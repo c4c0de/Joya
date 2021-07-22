@@ -1,15 +1,14 @@
 package com.example.joya;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -19,15 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
-import org.w3c.dom.CDATASection;
-
-import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity {
@@ -164,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSuccess(AuthResult authResult) {
                 Toast.makeText(MainActivity.this, "Success", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(getApplicationContext(),MainPage.class));
+                startActivity(new Intent(getApplicationContext(),bottom_nav.class));
                 finish();
 
             }
