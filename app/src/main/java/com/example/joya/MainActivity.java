@@ -42,15 +42,10 @@ public class MainActivity extends AppCompatActivity {
     FirebaseAuth FAuth;
     PhoneAuthProvider.OnVerificationStateChangedCallbacks callbacks;
 
-    EditText CountryCode,PhoneNumber;
-    Button SendOTPBtn;
-
-
-    @Override
+   @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
 
         PhoneNumber = findViewById(R.id.PhoneNumber);
@@ -139,28 +134,7 @@ public class MainActivity extends AppCompatActivity {
                 enterOTP.setVisibility(View.VISIBLE);
                 resendOTP.setEnabled(false);
 
-
-        CountryCode = findViewById(R.id.CC);
-        PhoneNumber = findViewById(R.id.PhoneNumber);
-        SendOTPBtn = findViewById(R.id.SndOTPBtn);
-
-        SendOTPBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(CountryCode.getText().toString().isEmpty()){
-                    CountryCode.setError("Required");
-                    return;
-                }
-                if (PhoneNumber.getText().toString().isEmpty()){
-                    PhoneNumber.setError("Phone Number is Required");
-                    return;
-                }
-
-                Toast.makeText(MainActivity.this, "+"+CountryCode.getText().toString()+PhoneNumber.getText().toString(), Toast.LENGTH_SHORT).show();
-
-
             }
-
 
             @Override
             public void onCodeAutoRetrievalTimeOut(@NonNull String s) {
@@ -211,6 +185,5 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(getApplicationContext(),MainPage.class));
             finish();
         }
-
     }
 }
