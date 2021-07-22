@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "996086683316",
+    "project_id": "joya-a02cc",
+    "storage_bucket": "joya-a02cc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:996086683316:android:e283bc8fcc9daf593ea9e1",
+        "android_client_info": {
+          "package_name": "com.example.joya"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "996086683316-lg5fie8u5c6ojon7sc5s1r5ge3siskgv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRT4rqHBOvopMF1chVNCbjq9_Pl3wTDD8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "996086683316-lg5fie8u5c6ojon7sc5s1r5ge3siskgv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
