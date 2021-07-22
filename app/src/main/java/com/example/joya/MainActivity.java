@@ -3,6 +3,7 @@ package com.example.joya;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,6 +11,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.FirebaseException;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.PhoneAuthCredential;
+import com.google.firebase.auth.PhoneAuthOptions;
+import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -19,106 +28,162 @@ import com.google.firebase.database.ValueEventListener;
 import org.w3c.dom.CDATASection;
 
 import java.util.HashMap;
+import java.util.concurrent.TimeUnit;
+
 public class MainActivity extends AppCompatActivity {
+
+
+    EditText PhoneNumber, countryCode, enterOTP;
+
+
+    Button SendOTPBtn, verifyOTP, resendOTP;
+    String userPhoneNumber, verificationID;
+    PhoneAuthProvider.ForceResendingToken token;
+    FirebaseAuth FAuth;
+    PhoneAuthProvider.OnVerificationStateChangedCallbacks callbacks;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button bntsub=findViewById(R.id.buttonsub);
-        final EditText textname=findViewById((R.id.textname));
-        final EditText textphn=findViewById((R.id.textphn));
-        final EditText textloc=findViewById(R.id.textloc);
-        final EditText textnamej=(findViewById(R.id.textnamej));
-        final int[] maxid = new int[1];
-        final Member member;
-        final int[] len = new int[1];
-        final int[]lenloc= new int[1];
-        final int[]lennam= new int[1];
-        final int[]lenjnam=new int[1];
-        final int[] i = {0};
-        //firebase connection
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        final DatabaseReference myRef = database.getReference().child("users");
-        //
 
-        member=new Member();
 
-        myRef.addValueEventListener(new ValueEventListener() {
+        PhoneNumber = findViewById(R.id.PhoneNumber);
+        SendOTPBtn = findViewById(R.id.SndOTPBtn);
+        countryCode = findViewById(R.id.countryCode);
+
+        verifyOTP = findViewById(R.id.verifyOTP);
+        resendOTP = findViewById(R.id.resendOTP);
+        enterOTP = findViewById(R.id.enterOTP);
+
+        FAuth = FirebaseAuth.getInstance();
+
+        SendOTPBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.exists())
-                    maxid[0] = (int) dataSnapshot.getChildrenCount();
-            }
+            public void onClick(View view) {
+                if(countryCode.getText().toString().isEmpty()){
+                    countryCode.setError("Required");
+                    return;
+                }
+                if (PhoneNumber.getText().toString().isEmpty()) {
+                    PhoneNumber.setError("Phone Number is Required");
+                    return;
+                }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                userPhoneNumber ="+"+countryCode.getText().toString()+ PhoneNumber.getText().toString();
+                verifyPhoneNumber(userPhoneNumber);
+                Toast.makeText(MainActivity.this, "" + userPhoneNumber, Toast.LENGTH_SHORT).show();
 
             }
         });
 
-        final TextView locat=findViewById(R.id.textloc1);
-        final TextView namee=findViewById(R.id.textna);
-        final TextView phonee=findViewById(R.id.textno);
-        final TextView namej=findViewById(R.id.textnaj2);
 
-
-
-        bntsub.setOnClickListener(new View.OnClickListener() {
+        resendOTP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String phn=textphn.getText().toString().trim();
-                String name=textname.getText().toString().trim();
-                String loc=textloc.getText().toString().toLowerCase().trim();
-                String namejw=textnamej.getText().toString().trim();
-
-                member.setName(name);
-                //member.setPhone(phn);
-                member.setLocation(loc);
-                member.setJname(namejw);
-
-                len[0] =phn.length();
-                lenloc[0]=loc.length();
-                lennam[0]=name.length();
-                lenjnam[0]=namejw.length();
-
-
-                if(len[0] !=10){
-                    phonee.setAlpha(1);
-                }
-                else {
-                    phonee.setAlpha(0);
-                }
-                if(lenloc[0]==0){
-                    locat.setAlpha(1);
-                }
-                else{
-                    locat.setAlpha(0);
-                }
-                if(lennam[0]==0){
-                    namee.setAlpha(1);
-                }
-                else {
-                    namee.setAlpha(0);
-                }
-                if(lenjnam[0]==0){
-                    namej.setAlpha(1);
-                }
-                else {
-                    namej.setAlpha(0);
-                }
-                DatabaseReference newref=myRef.child(phn);
-
-                if((len[0] ==10)&&(lenloc[0]!=0)&&(lennam[0]!=0)&&(lenjnam[0]!=0)) {
-                    myRef.child(phn).setValue(member);
-                    Toast.makeText(getApplicationContext(),"Registered Successfully ",Toast.LENGTH_LONG).show();
-
-                }
+                verifyPhoneNumber(userPhoneNumber);
+                resendOTP.setEnabled(false);
             }
         });
 
+        verifyOTP.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(enterOTP.getText().toString().isEmpty()){
+                    enterOTP.setError("Enter OTP first");
+                    return;
+                }
+
+                PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationID,enterOTP.getText().toString());
+                authenticateUser(credential);
+
+            }
+        });
+
+        callbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+            @Override
+            public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
+
+                authenticateUser(phoneAuthCredential);
+
+            }
+
+            @Override
+            public void onVerificationFailed(@NonNull FirebaseException e) {
+
+                Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+
+            }
+
+            @Override
+            public void onCodeSent(@NonNull String s, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+                super.onCodeSent(s, forceResendingToken);
+                verificationID = s;
+                token = forceResendingToken;
 
 
+                PhoneNumber.setVisibility(View.GONE);
+                SendOTPBtn.setVisibility(View.GONE);
+                countryCode.setVisibility(View.GONE);
 
+
+                resendOTP.setVisibility(View.VISIBLE);
+                verifyOTP.setVisibility(View.VISIBLE);
+                enterOTP.setVisibility(View.VISIBLE);
+                resendOTP.setEnabled(false);
+
+            }
+
+            @Override
+            public void onCodeAutoRetrievalTimeOut(@NonNull String s) {
+                super.onCodeAutoRetrievalTimeOut(s);
+                resendOTP.setEnabled(true);
+            }
+        };
+
+
+    }
+
+    public void verifyPhoneNumber(String phoneNum) {
+
+        PhoneAuthOptions options = PhoneAuthOptions.newBuilder(FAuth)
+                .setActivity(this)
+                .setPhoneNumber(phoneNum)
+                .setTimeout(60L, TimeUnit.SECONDS)
+                .setCallbacks(callbacks)
+                .build();
+
+        PhoneAuthProvider.verifyPhoneNumber(options);
+
+    }
+
+    public void authenticateUser(PhoneAuthCredential credentials) {
+        FAuth.signInWithCredential(credentials).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+            @Override
+            public void onSuccess(AuthResult authResult) {
+                Toast.makeText(MainActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getApplicationContext(),MainPage.class));
+                finish();
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+
+                Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+
+            }
+        });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if(FirebaseAuth.getInstance().getCurrentUser() != null){
+            startActivity(new Intent(getApplicationContext(),MainPage.class));
+            finish();
+        }
     }
 }
