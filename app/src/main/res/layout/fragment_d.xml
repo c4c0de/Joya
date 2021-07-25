@@ -6,20 +6,7 @@
     android:background="#9BD3CE"
     tools:context=".dFragment">
 
-    <TextView
-        android:id="@+id/text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:text="hello" />
 
-    <Button
-        android:id="@+id/btLogout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="LogOut"
-        android:layout_gravity="bottom"/>
 
     <Button
         android:id="@+id/btLogin"
