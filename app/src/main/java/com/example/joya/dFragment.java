@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -23,17 +24,22 @@ public class dFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        btLogout = getView().findViewById(R.id.btLogout);
+        View v = inflater.inflate(R.layout.fragment_d, container, false);
+
+        btLogout = v.findViewById(R.id.btLogout);
 
         btLogout.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
 
-
+                Toast.makeText(getActivity(), "hellooooooo", Toast.LENGTH_SHORT).show();
             }
         });
 
+//        Toast.makeText(getActivity(), "hellooooooo", Toast.LENGTH_SHORT).show();
+
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_d, container, false);
+        return v;
     }
 }
