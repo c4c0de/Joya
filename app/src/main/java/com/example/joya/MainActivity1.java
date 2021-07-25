@@ -46,9 +46,20 @@ public class MainActivity1 extends AppCompatActivity {
 
         binding.listview.setAdapter(listAdapter);
         binding.listview.setClickable(true);
+//        binding.listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//
+//
+//                startActivity(new Intent(getApplicationContext(),demo1.class));
+//                finish();
+//            }
+//        });
         binding.listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                startActivity(new Intent(getApplicationContext(),UserActivity.class));
 
                 Intent i = new Intent(MainActivity1.this,UserActivity.class);
                 i.putExtra("name",name[position]);

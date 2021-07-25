@@ -155,7 +155,7 @@ public class OTP_authentication extends AppCompatActivity {
             @Override
             public void onSuccess(AuthResult authResult) {
                 Toast.makeText(OTP_authentication.this, "Success", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(getApplicationContext(),MainActivity1.class));
+                startActivity(new Intent(getApplicationContext(),bottomDrawer.class));
                 finish();
 
             }
@@ -173,7 +173,7 @@ public class OTP_authentication extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         if(FirebaseAuth.getInstance().getCurrentUser() != null){
-            startActivity(new Intent(getApplicationContext(),MainActivity1.class));
+            startActivity(new Intent(getApplicationContext(),bottomDrawer.class));
             finish();
         }
     }

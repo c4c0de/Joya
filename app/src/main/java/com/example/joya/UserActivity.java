@@ -1,4 +1,5 @@
 package com.example.joya;
+
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -18,7 +19,7 @@ public class UserActivity extends AppCompatActivity {
 
         Intent intent = this.getIntent();
 
-        if (intent != null){
+        if (intent != null) {
 
             String name = intent.getStringExtra("name");
             String phone = intent.getStringExtra("phone");

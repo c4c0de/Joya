@@ -9,9 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Joya">
-        <activity android:name=".MainPage" />
-        <activity android:name=".OTP_authentication" >
+        <activity android:name=".bottomDrawer">
 
+        </activity>
+        <activity android:name=".MainPage" />
+        <activity android:name=".OTP_authentication">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,6 +21,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity1" />
+        <activity android:name=".UserActivity" />
     </application>
 
 </manifest>
