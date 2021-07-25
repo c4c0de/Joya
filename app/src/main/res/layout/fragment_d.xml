@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
-        android:text="hello" />
+        android:text="poda naye" />
 
     <Button
         android:id="@+id/btLogout"
