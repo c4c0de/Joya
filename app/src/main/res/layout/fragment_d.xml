@@ -7,11 +7,12 @@
     tools:context=".dFragment">
 
     <TextView
+        android:id="@+id/text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="hello"
+        android:layout_gravity="center"
         android:gravity="center"
-        android:layout_gravity="center"/>
+        android:text="hello" />
 
     <Button
         android:id="@+id/btLogout"
