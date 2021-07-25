@@ -1,130 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity1">
 
-
-    <TextView
-        android:id="@+id/loginText"
+    <ListView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:gravity="center"
-        android:text="Login/Register"
-        android:textSize="40sp" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <EditText
-            android:id="@+id/countryCode"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:ems="2"
-            android:hint="91"
-            android:inputType="phone" />
-
-        <EditText
-            android:id="@+id/PhoneNumber"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:ems="10"
-            android:hint="enter number"
-            android:inputType="phone" />
+        android:layout_height="match_parent"
+        android:id="@+id/listview"
+        tools:listitem="@layout/list_item"/>
 
 
-    </LinearLayout>
-
-
-    <Button
-        android:id="@+id/SndOTPBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="send OTP" />
-
-    <EditText
-        android:id="@+id/enterOTP"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:ems="10"
-        android:hint="enter OTP"
-        android:inputType="phone"
-        android:visibility="invisible" />
-
-    <Button
-        android:id="@+id/verifyOTP"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="verify"
-        android:visibility="invisible" />
-
-    <Button
-        android:id="@+id/resendOTP"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="resend"
-        android:visibility="invisible" />
-
-
-</LinearLayout>
-
-    <EditText
-        android:id="@+id/PhoneNumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="24dp"
-        android:ems="10"
-        android:hint="Phone Number"
-        android:inputType="phone"
-        android:maxLength="10"
-        app:layout_constraintBottom_toBottomOf="@+id/CC"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.252"
-        app:layout_constraintStart_toEndOf="@+id/CC" />
-
-    <EditText
-        android:id="@+id/CC"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="phone"
-        android:maxLength="3"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.249"
-        tools:layout_editor_absoluteX="73dp" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Login/Register"
-        android:textSize="34sp"
-        tools:layout_editor_absoluteX="94dp"
-        tools:layout_editor_absoluteY="100dp" />
-
-    <Button
-        android:id="@+id/SndOTPBtn"
-        android:text="Send OTP"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="232dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
-
