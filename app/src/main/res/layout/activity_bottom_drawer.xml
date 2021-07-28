@@ -14,7 +14,7 @@
         android:layout_alignParentBottom="true"
         android:layout_margin="20dp"
         android:elevation="5dp"
-        android:background="#93D1ED"
+        android:background="#FFFFFF"
         android:id="@+id/bottom_navigation"/>
 
 

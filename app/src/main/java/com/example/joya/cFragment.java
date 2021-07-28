@@ -1,63 +1,137 @@
 package com.example.joya;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.fragment.app.Fragment;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link cFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import org.jitsi.meet.sdk.JitsiMeet;
+import org.jitsi.meet.sdk.JitsiMeetActivity;
+import org.jitsi.meet.sdk.JitsiMeetConferenceOptions;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+
+
 public class cFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    Button createClass, buttonClass1, buttonClass2, buttonClass3, buttonClass4, buttonClass5;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     public cFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment cFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static cFragment newInstance(String param1, String param2) {
-        cFragment fragment = new cFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_c, container, false);
+        View view = inflater.inflate(R.layout.fragment_c, container, false);
+
+        createClass = view.findViewById(R.id.btClassCustom);
+        buttonClass1 = view.findViewById(R.id.btClass1);
+        buttonClass2 = view.findViewById(R.id.btClass2);
+        buttonClass3 = view.findViewById(R.id.btClass3);
+        buttonClass4 = view.findViewById(R.id.btClass4);
+        buttonClass5 = view.findViewById(R.id.btClass5);
+
+        URL serverURL;
+
+        try {
+            serverURL = new URL("https://meet.jit.si");
+            JitsiMeetConferenceOptions defaultOptions =
+                    new JitsiMeetConferenceOptions.Builder()
+                            .setServerURL(serverURL)
+                            .setWelcomePageEnabled(false)
+                            .build();
+            JitsiMeet.setDefaultConferenceOptions(defaultOptions);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+        createClass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), codeGeneratorForStudyClass.class));
+            }
+        });
+
+        buttonClass1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                JitsiMeetConferenceOptions options = new JitsiMeetConferenceOptions.Builder()
+                        .setRoom("class1")
+                        .setWelcomePageEnabled(false)
+                        .build();
+
+                JitsiMeetActivity.launch(getContext(), options);
+
+            }
+        });
+
+        buttonClass2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                JitsiMeetConferenceOptions options = new JitsiMeetConferenceOptions.Builder()
+                        .setRoom("class2")
+                        .setWelcomePageEnabled(false)
+                        .build();
+
+                JitsiMeetActivity.launch(getContext(), options);
+
+            }
+        });
+
+        buttonClass3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                JitsiMeetConferenceOptions options = new JitsiMeetConferenceOptions.Builder()
+                        .setRoom("class3")
+                        .setWelcomePageEnabled(false)
+                        .build();
+
+                JitsiMeetActivity.launch(getContext(), options);
+
+            }
+        });
+
+        buttonClass4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                JitsiMeetConferenceOptions options = new JitsiMeetConferenceOptions.Builder()
+                        .setRoom("class4")
+                        .setWelcomePageEnabled(false)
+                        .build();
+
+                JitsiMeetActivity.launch(getContext(), options);
+
+            }
+        });
+
+        buttonClass5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                JitsiMeetConferenceOptions options = new JitsiMeetConferenceOptions.Builder()
+                        .setRoom("class5")
+                        .setWelcomePageEnabled(false)
+                        .build();
+
+                JitsiMeetActivity.launch(getContext(), options);
+
+            }
+        });
+
+
+
+        return view;
     }
 }
