@@ -2,35 +2,35 @@ package com.example.joya;
 
 public class helperCourse2ScheduleUpdate {
 
-    String course1date, course1MorningClass, Course1EveningClass;
+    String course2date, course2MorningClass, Course2EveningClass;
 
     public helperCourse2ScheduleUpdate(String course1date, String course1MorningClass, String course1EveningClass) {
-        this.course1date = course1date;
-        this.course1MorningClass = course1MorningClass;
-        Course1EveningClass = course1EveningClass;
+        this.course2date = course1date;
+        this.course2MorningClass = course1MorningClass;
+        Course2EveningClass = course1EveningClass;
     }
 
-    public String getCourse1date() {
-        return course1date;
+    public String getCourse2date() {
+        return course2date;
     }
 
-    public String getCourse1MorningClass() {
-        return course1MorningClass;
+    public String getCourse2MorningClass() {
+        return course2MorningClass;
     }
 
-    public String getCourse1EveningClass() {
-        return Course1EveningClass;
+    public String getCourse2EveningClass() {
+        return Course2EveningClass;
     }
 
-    public void setCourse1date(String course1date) {
-        this.course1date = course1date;
+    public void setCourse2date(String course1date) {
+        this.course2date = course2date;
     }
 
-    public void setCourse1MorningClass(String course1MorningClass) {
-        this.course1MorningClass = course1MorningClass;
+    public void setCourse2MorningClass(String course2MorningClass) {
+        this.course2MorningClass = course2MorningClass;
     }
 
-    public void setCourse1EveningClass(String course1EveningClass) {
-        Course1EveningClass = course1EveningClass;
+    public void setCourse2EveningClass(String course2EveningClass) {
+        Course2EveningClass = course2EveningClass;
     }
 }

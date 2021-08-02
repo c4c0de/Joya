@@ -37,12 +37,12 @@ public class ListAdapter extends ArrayAdapter<User> {
         ImageView imageView = convertView.findViewById(R.id.profile_pic);
         TextView userName = convertView.findViewById(R.id.personName);
         TextView lastMsg = convertView.findViewById(R.id.lastMessage);
-        TextView time = convertView.findViewById(R.id.msgtime);
+
 
         imageView.setImageResource(user.imageId);
         userName.setText(user.name);
         lastMsg.setText(user.lastMessage);
-        time.setText(user.lastMsgTime);
+
 
 
         return convertView;

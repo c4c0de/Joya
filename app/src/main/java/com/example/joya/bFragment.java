@@ -1,5 +1,6 @@
 package com.example.joya;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
@@ -13,10 +14,18 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.annotations.NotNull;
 
 import org.jitsi.meet.sdk.JitsiMeet;
 import org.jitsi.meet.sdk.JitsiMeetActivity;
@@ -30,20 +39,28 @@ import java.util.Date;
 public class bFragment extends Fragment {
 
 
-    Spinner spinnerCourse, spinnerScheduledClass, spinnerCourseUpdate;
+    Spinner spinnerCourse, spinnerScheduledClass, spinnerCourseUpdate, spinnerCourseAdd, spinnerCourseMaterial;
     static final String[] paths = {"........", "Course 1", "Course 2"};
 
-    static final String[] pathsUpdate = {"Course 1", "Course 2"};
 
-    TextView liveClass, className, scheduledClass;
+    TextView liveClass, className, scheduledClass, TVcourse1Date;
+
+    TextView course1MorningClassName, course1EveningClassName, course2MorningClassName, course2EveningClassName;
 
     EditText course1dateOfPeriod, course1morningClass, course1eveningClass, course2dateOfPeriod, course2morningClass, course2eveningClass;
 
-    Button onGoingClassCourse1, onGoingClassCourse2, updateCourse1Schedule, updateCourse2Schedule;
+    Button onGoingClassCourse1, onGoingClassCourse2, updateCourse1Schedule, updateCourse2Schedule, addCourse1, addCourse2;
 
+    CardView course1Date, course1MorningClass, course1EveningClass, course2Date, course2MorningClass, course2EveningClass, CVCourse1ScheduledClass, CVCourse2ScheduledClass;
+
+    RecyclerView recyclerViewCourse1, recyclerViewCourse2;
 
     FirebaseDatabase rootnood1, rootnood2;
-    DatabaseReference reference1, reference2;
+    DatabaseReference reference1;
+    DatabaseReference reference2;
+    DatabaseReference referenceCourse1;
+    DatabaseReference referenceCourse2;
+    FirebaseDatabase reference;
 
 
     public bFragment() {
@@ -56,16 +73,6 @@ public class bFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View viewB = inflater.inflate(R.layout.fragment_b, container, false);
-
-
-        Date d = new Date();
-        String date = (String) DateFormat.format("dd-MM-yyyy ", d.getTime());
-
-
-//        Calendar calendar = Calendar.getInstance();
-//        calendar.setTime(d);
-//        String[] days = new String[]{"SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"};
-//        String day = days[calendar.get(Calendar.DAY_OF_WEEK)-1];
 
 
         URL serverURL;
@@ -85,14 +92,25 @@ public class bFragment extends Fragment {
         liveClass = viewB.findViewById(R.id.tvLiveClass);
         className = viewB.findViewById(R.id.tvOnGoingClass);
         scheduledClass = viewB.findViewById(R.id.tvScheduledClass);
+        TVcourse1Date = viewB.findViewById(R.id.tvCourse1Date);
+        course1MorningClassName = viewB.findViewById(R.id.tvCourse1MorningClassName);
+        course1EveningClassName = viewB.findViewById(R.id.tvCourse1EveningClassName);
+        course2MorningClassName = viewB.findViewById(R.id.tvCourse2MorningClassName);
+        course2EveningClassName = viewB.findViewById(R.id.tvCourse2EveningClassName);
+
 
         onGoingClassCourse1 = viewB.findViewById(R.id.btOnGoingClassCourse1);
         onGoingClassCourse2 = viewB.findViewById(R.id.btOnGoingClassCourse2);
+        updateCourse1Schedule = viewB.findViewById(R.id.btCourse1UpdateSchedule);
+        updateCourse2Schedule = viewB.findViewById(R.id.btCourse2UpdateSchedule);
+        addCourse1 = viewB.findViewById(R.id.btAddCourse1);
+        addCourse2 = viewB.findViewById(R.id.btAddCourse2);
 
 
         spinnerCourse = viewB.findViewById(R.id.spinnerCourse);
-        spinnerScheduledClass = viewB.findViewById(R.id.spinnerScheduledClass);
         spinnerCourseUpdate = viewB.findViewById(R.id.spinnerCourseUpdate);
+        spinnerCourseAdd = viewB.findViewById(R.id.spCourseAdd);
+        spinnerCourseMaterial = viewB.findViewById(R.id.spStudyMaterial);
 
         course1dateOfPeriod = viewB.findViewById(R.id.etCourse1Date);
         course1morningClass = viewB.findViewById(R.id.etCourse1MorningClass);
@@ -102,8 +120,21 @@ public class bFragment extends Fragment {
         course2morningClass = viewB.findViewById(R.id.etCourse2MorningClass);
         course2eveningClass = viewB.findViewById(R.id.etCourse2EveningClass);
 
-        updateCourse1Schedule = viewB.findViewById(R.id.btCourse1UpdateSchedule);
-        updateCourse2Schedule = viewB.findViewById(R.id.btCourse2UpdateSchedule);
+
+        CVCourse2ScheduledClass = viewB.findViewById(R.id.cvCourse2ScheduledClass);
+        CVCourse1ScheduledClass = viewB.findViewById(R.id.cvCourse1ScheduledClass);
+        course1Date = viewB.findViewById(R.id.cvCourse1Date);
+        course1MorningClass = viewB.findViewById(R.id.cvCourse1MorningClass);
+        course1EveningClass = viewB.findViewById(R.id.cvCourse1EveningClass);
+        course2Date = viewB.findViewById(R.id.cvCourse2Date);
+        course2MorningClass = viewB.findViewById(R.id.cvCourse2MorningClass);
+        course2EveningClass = viewB.findViewById(R.id.cvCourse2EveningClass);
+
+        recyclerViewCourse1 = viewB.findViewById(R.id.rvCourse1Material);
+        recyclerViewCourse2 = viewB.findViewById(R.id.rvCourse2Material);
+
+
+        recyclerViewCourse1.setLayoutManager(new LinearLayoutManager(getContext()));
 
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
@@ -111,6 +142,71 @@ public class bFragment extends Fragment {
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerCourse.setAdapter(adapter);
+        spinnerCourseUpdate.setAdapter(adapter);
+        spinnerCourseAdd.setAdapter(adapter);
+        spinnerCourseMaterial.setAdapter(adapter);
+
+
+        spinnerCourseMaterial.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedItem = parent.getItemAtPosition(position).toString();
+                if (selectedItem.equals("Course 1")) {
+
+                    recyclerViewCourse1.setVisibility(View.VISIBLE);
+                    recyclerViewCourse2.setVisibility(View.GONE);
+
+//                    reference = FirebaseDatabase.getInstance();
+//
+//                    DatabaseReference databaseReference = reference.getReference("course1Videos");
+//
+//                    FirebaseRecyclerOptions<helperCourse1VideoUpload> options =
+//                            new FirebaseRecyclerOptions.Builder<helperCourse1VideoUpload>()
+//                                    .setQuery(databaseReference, helperCourse1VideoUpload.class)
+//                                    .build();
+//
+//                    FirebaseRecyclerAdapter<helperCourse1VideoUpload, Course1MaterialViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<helperCourse1VideoUpload, Course1MaterialViewHolder>(options) {
+//                        @Override
+//                        protected void onBindViewHolder(@NonNull @org.jetbrains.annotations.NotNull Course1MaterialViewHolder holder, int position, @NonNull @org.jetbrains.annotations.NotNull helperCourse1VideoUpload model) {
+//
+//
+//                            holder.setPlayer( getContext(), model.getTitle(), model.getVurl());
+//
+//                        }
+//
+//                        @NonNull
+//                        @org.jetbrains.annotations.NotNull
+//                        @Override
+//                        public Course1MaterialViewHolder onCreateViewHolder(@NonNull @org.jetbrains.annotations.NotNull ViewGroup parent, int viewType) {
+//
+//                            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.course1_single_row, parent, false);
+//                            return new Course1MaterialViewHolder(view);
+//                        }
+//                    };
+//
+//                    firebaseRecyclerAdapter.startListening();
+//                    recyclerViewCourse1.setAdapter(firebaseRecyclerAdapter);
+
+
+                } else if (selectedItem.equals("Course 2")) {
+
+                    recyclerViewCourse1.setVisibility(View.GONE);
+                    recyclerViewCourse2.setVisibility(View.VISIBLE);
+
+                } else {
+
+                    recyclerViewCourse1.setVisibility(View.GONE);
+                    recyclerViewCourse2.setVisibility(View.GONE);
+
+                }
+            } // to close the onItemSelected
+
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+
+            }
+        });
 
 
         spinnerCourse.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -123,12 +219,13 @@ public class bFragment extends Fragment {
                     liveClass.setText("Live Class");
                     liveClass.setVisibility(View.VISIBLE);
                     className.setVisibility(View.VISIBLE);
-                    scheduledClass.setVisibility(View.VISIBLE);
 
                     onGoingClassCourse1.setVisibility(View.VISIBLE);
-                    onGoingClassCourse2.setVisibility(View.GONE);
 
-                    spinnerScheduledClass.setVisibility(View.VISIBLE);
+
+                    CVCourse1ScheduledClass.setVisibility(View.VISIBLE);
+                    CVCourse2ScheduledClass.setVisibility(View.GONE);
+
 
                     onGoingClassCourse1.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -142,6 +239,27 @@ public class bFragment extends Fragment {
                         }
                     });
 
+                    Date d = new Date();
+                    String date = (String) DateFormat.format("dd-MM-yyyy", d.getTime());
+
+
+                    referenceCourse1 = FirebaseDatabase.getInstance().getReference("course1schedule");
+                    referenceCourse1.child(date).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull @NotNull Task<DataSnapshot> task) {
+
+                            DataSnapshot dataSnapshot = task.getResult();
+                            String course1MorningClass = String.valueOf(dataSnapshot.child("course1MorningClass").getValue());
+                            String course1EveningClass = String.valueOf(dataSnapshot.child("getCourse1EveningClass").getValue());
+
+
+                            course1MorningClassName.setText(course1MorningClass);
+                            course1EveningClassName.setText(course1EveningClass);
+
+
+                        }
+                    });
+
 
                 } else if (selectedItem.equals("Course 2")) {
                     Toast.makeText(getContext(), "course 2 Selected", Toast.LENGTH_SHORT).show();
@@ -149,12 +267,12 @@ public class bFragment extends Fragment {
                     liveClass.setText("Live Class");
                     liveClass.setVisibility(View.VISIBLE);
                     className.setVisibility(View.VISIBLE);
-                    scheduledClass.setVisibility(View.VISIBLE);
 
-                    onGoingClassCourse1.setVisibility(View.GONE);
-                    onGoingClassCourse2.setVisibility(View.VISIBLE);
+                    onGoingClassCourse1.setVisibility(View.VISIBLE);
 
-                    spinnerScheduledClass.setVisibility(View.VISIBLE);
+
+                    CVCourse1ScheduledClass.setVisibility(View.GONE);
+                    CVCourse2ScheduledClass.setVisibility(View.VISIBLE);
 
                     onGoingClassCourse2.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -168,17 +286,45 @@ public class bFragment extends Fragment {
                         }
                     });
 
+
+                    Date d = new Date();
+                    String date = (String) DateFormat.format("dd-MM-yyyy", d.getTime());
+
+
+                    referenceCourse2 = FirebaseDatabase.getInstance().getReference("course2schedule");
+                    referenceCourse2.child(date).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull @NotNull Task<DataSnapshot> task) {
+
+                            DataSnapshot dataSnapshot = task.getResult();
+                            String course2MorningClass = String.valueOf(dataSnapshot.child("course2MorningClass").getValue());
+                            String course2EveningClass = String.valueOf(dataSnapshot.child("course2EveningClass").getValue());
+
+
+                            course2MorningClassName.setText(course2MorningClass);
+                            course2EveningClassName.setText(course2EveningClass);
+
+
+                        }
+                    });
+
                 } else {
                     Toast.makeText(getContext(), "No Course Selected", Toast.LENGTH_SHORT).show();
 
-                    liveClass.setText("Select Your Course");
+                    liveClass.setText("select Your Course from Drop Down list");
+                    CVCourse2ScheduledClass.setVisibility(View.GONE);
+                    CVCourse1ScheduledClass.setVisibility(View.GONE);
+
                     className.setVisibility(View.GONE);
-                    scheduledClass.setVisibility(View.GONE);
-
-                    onGoingClassCourse1.setVisibility(View.GONE);
-                    onGoingClassCourse2.setVisibility(View.GONE);
-
-                    spinnerScheduledClass.setVisibility(View.GONE);
+//                    className.setVisibility(View.GONE);
+//                    scheduledClass.setVisibility(View.GONE);
+//
+//                    onGoingClassCourse1.setVisibility(View.GONE);
+//                    onGoingClassCourse2.setVisibility(View.GONE);
+//
+//                    spinnerScheduledClass.setVisibility(View.GONE);
+//
+//                    CVCourse1ScheduledClass.setVisibility(View.GONE);
 
                 }
             } // to close the onItemSelected
@@ -193,21 +339,140 @@ public class bFragment extends Fragment {
             }
         });
 
-        ArrayAdapter<String> adapters = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, pathsUpdate);
-        adapters.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerCourseUpdate.setAdapter(adapters);
+
+        spinnerCourseUpdate.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedItem = parent.getItemAtPosition(position).toString();
+                if (selectedItem.equals("Course 1")) {
 
 
-        spinnerCourseUpdate.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    TVcourse1Date.setText("Date :");
+
+                    TVcourse1Date.setVisibility(View.VISIBLE);
+
+
+                    course1dateOfPeriod.setVisibility(View.VISIBLE);
+
+                    course1Date.setVisibility(View.VISIBLE);
+                    course1MorningClass.setVisibility(View.VISIBLE);
+                    course1EveningClass.setVisibility(View.VISIBLE);
+
+                    course2Date.setVisibility(View.GONE);
+                    course2MorningClass.setVisibility(View.GONE);
+                    course2EveningClass.setVisibility(View.GONE);
+
+                    updateCourse1Schedule.setVisibility(View.VISIBLE);
+                    updateCourse2Schedule.setVisibility(View.GONE);
+
+
+                    updateCourse1Schedule.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                            updateCourse1ScheduleInfo();
+
+                        }
+                    });
+
+
+                } else if (selectedItem.equals("Course 2")) {
+
+                    course1Date.setVisibility(View.GONE);
+                    course1MorningClass.setVisibility(View.GONE);
+                    course1EveningClass.setVisibility(View.GONE);
+
+                    course2Date.setVisibility(View.VISIBLE);
+                    course2MorningClass.setVisibility(View.VISIBLE);
+                    course2EveningClass.setVisibility(View.VISIBLE);
+
+                    updateCourse1Schedule.setVisibility(View.GONE);
+                    updateCourse2Schedule.setVisibility(View.VISIBLE);
+
+                    updateCourse2Schedule.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                            updateCourse2ScheduleInfo();
+
+                        }
+                    });
+
+
+                } else {
+
+
+                    TVcourse1Date.setVisibility(View.VISIBLE);
+                    course1Date.setVisibility(View.VISIBLE);
+
+                    course1dateOfPeriod.setVisibility(View.GONE);
+                    course1MorningClass.setVisibility(View.GONE);
+                    course1EveningClass.setVisibility(View.GONE);
+
+                    course2Date.setVisibility(View.GONE);
+                    course2MorningClass.setVisibility(View.GONE);
+                    course2EveningClass.setVisibility(View.GONE);
+
+                    updateCourse1Schedule.setVisibility(View.GONE);
+                    updateCourse2Schedule.setVisibility(View.GONE);
+
+                    TVcourse1Date.setText("Select the course from drop down list");
+
+
+                }
+            } // to close the onItemSelected
+
+
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-            }
-
             public void onNothingSelected(AdapterView<?> parent) {
 
 
-//                Toast.makeText(getContext(), "my name is  nothing", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        spinnerCourseAdd.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedItem = parent.getItemAtPosition(position).toString();
+                if (selectedItem.equals("Course 1")) {
+
+                    addCourse1.setVisibility(View.VISIBLE);
+                    addCourse2.setVisibility(View.GONE);
+
+                    addCourse1.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                            startActivity(new Intent(getContext(), course1VideoUpload.class));
+                        }
+                    });
+
+
+                } else if (selectedItem.equals("Course 2")) {
+
+                    addCourse1.setVisibility(View.GONE);
+                    addCourse2.setVisibility(View.VISIBLE);
+
+                    addCourse1.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                            startActivity(new Intent(getContext(), course2VideoUpload.class));
+                        }
+                    });
+
+
+                } else {
+
+                    addCourse1.setVisibility(View.GONE);
+                    addCourse2.setVisibility(View.GONE);
+
+                }
+            } // to close the onItemSelected
+
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
 
             }
         });
@@ -215,6 +480,7 @@ public class bFragment extends Fragment {
 
         return viewB;
     }
+
 
     private void updateCourse1ScheduleInfo() {
 

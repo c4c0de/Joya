@@ -15,7 +15,7 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="wrap_content"
             app:cardCornerRadius="10dp">
 
             <LinearLayout
@@ -73,9 +73,9 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginStart="20dp"
-                            android:text="Live Class :"
+                            android:text="select Your Course from Drop Down"
                             android:textColor="#9C2727"
-                            android:visibility="gone" />
+                            android:visibility="visible" />
 
                         <TextView
                             android:id="@+id/tvOnGoingClass"
@@ -117,34 +117,149 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cvCourse1ScheduledClass"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="wrap_content"
                     android:layout_margin="20dp"
                     android:elevation="10dp"
+                    android:visibility="gone"
                     app:cardCornerRadius="10dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="horizontal">
+                        android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/tvScheduledClass"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_marginStart="20dp"
-                            android:text="Scheduled Classes :"
-                            android:textColor="@color/black"
-                            android:visibility="gone" />
+                            android:text="Course 1 Scheduled Classes :"
+                            android:textColor="@color/black" />
 
-                        <Spinner
-                            android:id="@+id/spinnerScheduledClass"
+                        <LinearLayout
                             android:layout_width="wrap_content"
-                            android:layout_height="20dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:text="Morning Class :" />
+
+                            <TextView
+                                android:id="@+id/tvCourse1MorningClassName"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:text=""
+                                android:textColor="@color/black" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:text="Evening Class :" />
+
+                            <TextView
+                                android:id="@+id/tvCourse1EveningClassName"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:text=""
+                                android:textColor="@color/black" />
+
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+
+                </androidx.cardview.widget.CardView>
+
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cvCourse2ScheduledClass"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:elevation="10dp"
+                    android:visibility="gone"
+                    app:cardCornerRadius="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_marginStart="50dp"
-                            android:visibility="gone" />
+                            android:text="Scheduled Classes :"
+                            android:textColor="@color/black" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:text="Morning Class :" />
+
+                            <TextView
+                                android:id="@+id/tvCourse2MorningClassName"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:text=""
+                                android:textColor="@color/black" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:text="Evening Class :" />
+
+                            <TextView
+                                android:id="@+id/tvCourse2EveningClassName"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:text=""
+                                android:textColor="@color/black" />
+
+
+                        </LinearLayout>
 
 
                     </LinearLayout>
@@ -160,9 +275,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+
             android:elevation="10dp"
-            app:cardCornerRadius="10dp"
-            android:layout_marginBottom="100dp">
+            app:cardCornerRadius="10dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -202,6 +317,7 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cvCourse1Date"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_margin="20dp"
@@ -214,10 +330,11 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:id="@+id/tvCourse1Date"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_marginStart="70dp"
+                            android:layout_marginStart="20dp"
                             android:text="Date :"
                             android:textColor="@color/black" />
 
@@ -225,6 +342,7 @@
                             android:id="@+id/etCourse1Date"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginStart="50dp"
                             android:layout_marginEnd="10dp"
                             android:inputType="date" />
 
@@ -234,10 +352,12 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cvCourse1MorningClass"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_margin="20dp"
                     android:elevation="10dp"
+                    android:visibility="gone"
                     app:cardCornerRadius="10dp">
 
                     <LinearLayout
@@ -267,10 +387,12 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cvCourse1EveningClass"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_margin="20dp"
                     android:elevation="10dp"
+                    android:visibility="gone"
                     app:cardCornerRadius="10dp">
 
                     <LinearLayout
@@ -306,15 +428,17 @@
                     android:layout_gravity="center"
                     android:layout_marginBottom="20dp"
                     android:backgroundTint="#00BCD4"
-                    android:text="Update Course One Schedule" />
-
+                    android:text="Update Course One Schedule"
+                    android:visibility="gone" />
 
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cvCourse2Date"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_margin="20dp"
                     android:elevation="10dp"
+                    android:visibility="gone"
                     app:cardCornerRadius="10dp">
 
                     <LinearLayout
@@ -326,7 +450,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_marginStart="70dp"
+                            android:layout_marginStart="20dp"
                             android:text="Date :"
                             android:textColor="@color/black" />
 
@@ -334,6 +458,7 @@
                             android:id="@+id/etCourse2Date"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginStart="50dp"
                             android:layout_marginEnd="10dp"
                             android:inputType="date" />
 
@@ -343,10 +468,12 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cvCourse2MorningClass"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_margin="20dp"
                     android:elevation="10dp"
+                    android:visibility="gone"
                     app:cardCornerRadius="10dp">
 
                     <LinearLayout
@@ -376,10 +503,12 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cvCourse2EveningClass"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_margin="20dp"
                     android:elevation="10dp"
+                    android:visibility="gone"
                     app:cardCornerRadius="10dp">
 
                     <LinearLayout
@@ -415,9 +544,8 @@
                     android:layout_gravity="center"
                     android:layout_marginBottom="20dp"
                     android:backgroundTint="#00BCD4"
-                    android:text="Update Course Two Schedule" />
-
-
+                    android:text="Update Course Two Schedule"
+                    android:visibility="gone" />
 
 
             </LinearLayout>
@@ -425,7 +553,110 @@
 
         </androidx.cardview.widget.CardView>
 
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:elevation="10dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="10dp">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center"
+                    android:text="Select course to add the study materials"
+                    android:textColor="@color/black" />
+
+                <Spinner
+                    android:id="@+id/spCourseAdd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="10dp" />
+
+                <Button
+                    android:id="@+id/btAddCourse1"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:backgroundTint="#00BCD4"
+                    android:text="ADD"
+                    android:visibility="gone" />
+
+                <Button
+                    android:id="@+id/btAddCourse2"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:backgroundTint="#00BCD4"
+                    android:text="ADD"
+                    android:visibility="gone" />
+
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="#00BCD4"
+            android:elevation="10dp">
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:elevation="10dp"
+            android:layout_marginTop="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:text="Select the course"
+                    android:textColor="@color/black" />
+
+                <Spinner
+                    android:id="@+id/spStudyMaterial"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvCourse1Material"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="10dp"
+                    android:visibility="visible"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvCourse2Material"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="10dp"
+                    android:visibility="visible"/>
+
+            </LinearLayout>
+
+
+        </androidx.cardview.widget.CardView>
 
 
     </LinearLayout>
