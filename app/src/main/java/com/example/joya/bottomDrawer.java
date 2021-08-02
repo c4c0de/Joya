@@ -22,6 +22,8 @@ public class bottomDrawer extends AppCompatActivity {
 //        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 
+
+
         navigationView = findViewById(R.id.bottom_navigation);
         getSupportFragmentManager().beginTransaction().replace(R.id.nav_bottom, new aFragment()).commit();
         navigationView.setSelectedItemId(R.id.a);
@@ -57,9 +59,6 @@ public class bottomDrawer extends AppCompatActivity {
         });
 
 //        sendDataToDFragment();
-
-
-
 
 
     }

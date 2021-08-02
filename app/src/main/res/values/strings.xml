@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Joya</string>
+    <string name="app_name">MC</string>
     <string name="title_activity_bottom_navigation">MainActivity</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>

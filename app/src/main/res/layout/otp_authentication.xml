@@ -5,79 +5,135 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/back_ground"
     tools:context=".OTP_authentication">
 
 
-    <TextView
-        android:id="@+id/loginText"
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:id="@+id/logo"
+        android:layout_gravity="center"
+        android:src="@drawable/mc_logo"
+        android:layout_margin="20dp"
+        />
+
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:gravity="center"
-        android:text="my name is alen"
-        android:textSize="40sp" />
+        android:layout_margin="15dp"
+        android:elevation="10dp"
+        app:cardBackgroundColor="#8B9EEDF8"
+        app:cardCornerRadius="20dp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <EditText
-            android:id="@+id/countryCode"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:ems="2"
-            android:hint="CC"
-            android:inputType="phone"
-            android:maxLength="2" />
-
-        <EditText
-            android:id="@+id/PhoneNumber"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:ems="10"
-            android:hint="enter number"
-            android:inputType="phone" />
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:elevation="19dp"
+                android:layout_marginTop="10dp"
+
+                android:layout_gravity="center"
+                app:cardCornerRadius="10dp"
+                >
 
 
-    </LinearLayout>
+                <TextView
+                    android:id="@+id/loginText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Login"
+                    android:textColor="@color/black"
+                    android:textSize="40sp"
+                    android:textStyle="bold"
+                    />
 
 
-    <Button
-        android:id="@+id/SndOTPBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="send OTP" />
 
-    <EditText
-        android:id="@+id/enterOTP"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:ems="10"
-        android:hint="enter OTP"
-        android:inputType="phone"
-        android:visibility="invisible" />
+            </androidx.cardview.widget.CardView>
 
-    <Button
-        android:id="@+id/verifyOTP"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="verify"
-        android:visibility="invisible" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/resendOTP"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="resend"
-        android:visibility="invisible" />
+                <EditText
+                    android:id="@+id/countryCode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="60dp"
+                    android:layout_marginTop="30dp"
 
+                    android:ems="2"
+                    android:textSize="20dp"
+                    android:hint="CC"
+                    android:textColorHint="@color/black"
+                    android:inputType="phone"
+                    android:maxLength="2"
+                    android:textColor="#000000"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/PhoneNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:textSize="20dp"
+                    android:ems="10"
+                    android:hint="Enter number"
+                    android:textColorHint="@color/black"
+                    android:inputType="phone"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+
+            <Button
+                android:id="@+id/SndOTPBtn"
+                android:layout_width="150dp"
+                android:layout_gravity="center"
+                android:backgroundTint="#00BCD4"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="send OTP"
+                android:layout_marginBottom="80dp"/>
+
+            <EditText
+                android:id="@+id/enterOTP"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:ems="10"
+                android:hint="enter OTP"
+                android:inputType="phone"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/verifyOTP"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="verify"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/resendOTP"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="resend"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
 
 </LinearLayout>
 

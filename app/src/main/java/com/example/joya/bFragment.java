@@ -22,6 +22,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -53,6 +55,8 @@ public class bFragment extends Fragment {
 
     CardView course1Date, course1MorningClass, course1EveningClass, course2Date, course2MorningClass, course2EveningClass, CVCourse1ScheduledClass, CVCourse2ScheduledClass;
 
+    CardView tutor1, tutor2;
+
     RecyclerView recyclerViewCourse1, recyclerViewCourse2;
 
     FirebaseDatabase rootnood1, rootnood2;
@@ -61,6 +65,11 @@ public class bFragment extends Fragment {
     DatabaseReference referenceCourse1;
     DatabaseReference referenceCourse2;
     FirebaseDatabase reference;
+
+    String currentUser;
+    String userFromFireBase;
+    FirebaseUser UserName;
+    DatabaseReference referenceA;
 
 
     public bFragment() {
@@ -129,9 +138,43 @@ public class bFragment extends Fragment {
         course2Date = viewB.findViewById(R.id.cvCourse2Date);
         course2MorningClass = viewB.findViewById(R.id.cvCourse2MorningClass);
         course2EveningClass = viewB.findViewById(R.id.cvCourse2EveningClass);
+        tutor1 = viewB.findViewById(R.id.cvtutor1);
+        tutor2 = viewB.findViewById(R.id.cvtutor2);
 
         recyclerViewCourse1 = viewB.findViewById(R.id.rvCourse1Material);
         recyclerViewCourse2 = viewB.findViewById(R.id.rvCourse2Material);
+
+
+        UserName = FirebaseAuth.getInstance().getCurrentUser();
+        userFromFireBase = UserName.getPhoneNumber();
+
+
+        referenceA = FirebaseDatabase.getInstance().getReference("tutorUser");
+        referenceA.child(userFromFireBase).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull @NotNull Task<DataSnapshot> task) {
+
+                DataSnapshot dataSnapshot = task.getResult();
+                currentUser = String.valueOf(dataSnapshot.child("user").getValue());
+
+
+                if (userFromFireBase.equals(currentUser)) {
+
+                    tutor1.setVisibility(View.VISIBLE);
+                    tutor2.setVisibility(View.VISIBLE);
+
+
+                } else {
+
+                    tutor1.setVisibility(View.GONE);
+                    tutor2.setVisibility(View.GONE);
+
+
+                }
+
+
+            }
+        });
 
 
         recyclerViewCourse1.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -155,42 +198,47 @@ public class bFragment extends Fragment {
                     recyclerViewCourse1.setVisibility(View.VISIBLE);
                     recyclerViewCourse2.setVisibility(View.GONE);
 
-//                    reference = FirebaseDatabase.getInstance();
-//
-//                    DatabaseReference databaseReference = reference.getReference("course1Videos");
-//
-//                    FirebaseRecyclerOptions<helperCourse1VideoUpload> options =
-//                            new FirebaseRecyclerOptions.Builder<helperCourse1VideoUpload>()
-//                                    .setQuery(databaseReference, helperCourse1VideoUpload.class)
-//                                    .build();
-//
-//                    FirebaseRecyclerAdapter<helperCourse1VideoUpload, Course1MaterialViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<helperCourse1VideoUpload, Course1MaterialViewHolder>(options) {
-//                        @Override
-//                        protected void onBindViewHolder(@NonNull @org.jetbrains.annotations.NotNull Course1MaterialViewHolder holder, int position, @NonNull @org.jetbrains.annotations.NotNull helperCourse1VideoUpload model) {
-//
-//
-//                            holder.setPlayer( getContext(), model.getTitle(), model.getVurl());
-//
-//                        }
-//
-//                        @NonNull
-//                        @org.jetbrains.annotations.NotNull
-//                        @Override
-//                        public Course1MaterialViewHolder onCreateViewHolder(@NonNull @org.jetbrains.annotations.NotNull ViewGroup parent, int viewType) {
-//
-//                            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.course1_single_row, parent, false);
-//                            return new Course1MaterialViewHolder(view);
-//                        }
-//                    };
-//
-//                    firebaseRecyclerAdapter.startListening();
-//                    recyclerViewCourse1.setAdapter(firebaseRecyclerAdapter);
+
+                    recyclerViewCourse1 = viewB.findViewById(R.id.rvCourse1Material);
+                    recyclerViewCourse1.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+
+                    helperSubject1[] helperSubject3= new helperSubject1[]{
+                            new helperSubject1("Course 1", "xyz", R.drawable.a),
+                            new helperSubject1("Course 2", "xyz", R.drawable.b),
+                            new helperSubject1("Course 3", "xyz", R.drawable.c),
+                            new helperSubject1("Course 4", "xyz", R.drawable.d),
+                            new helperSubject1("Course 1", "xyz", R.drawable.a),
+                            new helperSubject1("Course 2", "xyz", R.drawable.b),
+                            new helperSubject1("Course 3", "xyz", R.drawable.c)
+
+                    };
+
+                    videoAdapter videoAdapter1 = new videoAdapter(helperSubject3, getContext());
+                    recyclerViewCourse1.setAdapter(videoAdapter1);
 
 
                 } else if (selectedItem.equals("Course 2")) {
 
                     recyclerViewCourse1.setVisibility(View.GONE);
                     recyclerViewCourse2.setVisibility(View.VISIBLE);
+
+
+                    recyclerViewCourse2 = viewB.findViewById(R.id.rvCourse2Material);
+                    recyclerViewCourse2.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+
+                    helperSubject1[] helperSubject3= new helperSubject1[]{
+                            new helperSubject1("Course 1", "xyz", R.drawable.a),
+                            new helperSubject1("Course 2", "xyz", R.drawable.b),
+                            new helperSubject1("Course 3", "xyz", R.drawable.c),
+                            new helperSubject1("Course 4", "xyz", R.drawable.d),
+                            new helperSubject1("Course 1", "xyz", R.drawable.a),
+                            new helperSubject1("Course 2", "xyz", R.drawable.b),
+                            new helperSubject1("Course 3", "xyz", R.drawable.c)
+
+                    };
+
+                    videoAdapter videoAdapter1 = new videoAdapter(helperSubject3, getContext());
+                    recyclerViewCourse2.setAdapter(videoAdapter1);
 
                 } else {
 

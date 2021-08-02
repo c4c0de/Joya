@@ -1,13 +1,25 @@
 package com.example.joya;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.annotations.NotNull;
 
 
 public class aFragment extends Fragment {
@@ -15,6 +27,15 @@ public class aFragment extends Fragment {
     RecyclerView courses;
     RecyclerView subject1;
     RecyclerView subject2;
+
+    TextView viewAll1, viewAll2;
+
+    String currentUser;
+    String userFromFireBase;
+    FirebaseUser UserName;
+    DatabaseReference reference;
+
+
 
 
     public aFragment() {
@@ -27,6 +48,77 @@ public class aFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_a, container, false);
+
+
+
+
+
+        viewAll1 = view.findViewById(R.id.tvViewAll1);
+        viewAll2 = view.findViewById(R.id.tvViewAll2);
+
+        UserName = FirebaseAuth.getInstance().getCurrentUser();
+        userFromFireBase = UserName.getPhoneNumber();
+
+
+
+
+        reference = FirebaseDatabase.getInstance().getReference("Course1User");
+
+        reference = FirebaseDatabase.getInstance().getReference("Course1User");
+        reference.child(userFromFireBase).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull @NotNull Task<DataSnapshot> task) {
+
+                DataSnapshot dataSnapshot = task.getResult();
+                currentUser = String.valueOf(dataSnapshot.child("user").getValue());
+
+
+
+                if ( userFromFireBase.equals(currentUser)) {
+
+                    viewAll1.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            startActivity(new Intent(getContext(), allVideos.class));
+
+
+
+
+                        }
+                    });
+
+                    viewAll2.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            startActivity(new Intent(getContext(), allVideos.class));
+
+
+
+
+                        }
+                    });
+
+                }else {
+
+                    viewAll1.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            startActivity(new Intent(getContext(), CourseEnroll.class));
+                        }
+                    });
+
+                    viewAll2.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            startActivity(new Intent(getContext(), CourseEnroll.class));
+                        }
+                    });
+
+                }
+
+
+            }
+        });
 
 
         courses = view.findViewById(R.id.rvCourses);
@@ -42,8 +134,6 @@ public class aFragment extends Fragment {
 
         courseAdapter myCourseAdapter = new courseAdapter(HelperCourses, getContext());
         courses.setAdapter(myCourseAdapter);
-
-
 
 
         subject1 = view.findViewById(R.id.rvSubject1);
@@ -74,9 +164,6 @@ public class aFragment extends Fragment {
 
         subject1Adapter mySubject1Adapter2 = new subject1Adapter(helperSubject2, getContext());
         subject2.setAdapter(mySubject1Adapter2);
-
-
-
 
 
         return view;

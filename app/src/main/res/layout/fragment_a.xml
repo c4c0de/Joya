@@ -51,6 +51,7 @@
 
 
             <TextView
+                android:id="@+id/tvViewAll1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="180dp"
@@ -91,6 +92,7 @@
 
 
             <TextView
+                android:id="@+id/tvViewAll2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="180dp"
