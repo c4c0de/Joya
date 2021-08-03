@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.jetbrains.annotations.NotNull;
@@ -46,7 +47,7 @@ public class subject1Adapter extends RecyclerView.Adapter<subject1Adapter.ViewHo
         holder.imageView.setImageResource(data.getImage());
 
 
-        holder.imageView.setOnClickListener(new View.OnClickListener() {
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -73,6 +74,7 @@ public class subject1Adapter extends RecyclerView.Adapter<subject1Adapter.ViewHo
 
         TextView textView, author;
         ImageView imageView;
+        CardView cardView;
 
 
         public ViewHolder(@NonNull @NotNull View itemView) {
@@ -81,6 +83,7 @@ public class subject1Adapter extends RecyclerView.Adapter<subject1Adapter.ViewHo
             textView = itemView.findViewById(R.id.tvSubject1Title);
             author = itemView.findViewById(R.id.tvSubject1Author);
             imageView = itemView.findViewById(R.id.ivSubject1Image);
+            cardView = itemView.findViewById(R.id.cvtap1);
 
 
         }

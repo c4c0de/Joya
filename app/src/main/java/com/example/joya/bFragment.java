@@ -233,13 +233,13 @@ public class bFragment extends Fragment {
                     recyclerViewCourse1.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
 
                     helperSubject1[] helperSubject3 = new helperSubject1[]{
-                            new helperSubject1("Course 1", "xyz", R.drawable.a),
-                            new helperSubject1("Course 2", "xyz", R.drawable.b),
-                            new helperSubject1("Course 3", "xyz", R.drawable.c),
-                            new helperSubject1("Course 4", "xyz", R.drawable.d),
-                            new helperSubject1("Course 1", "xyz", R.drawable.a),
-                            new helperSubject1("Course 2", "xyz", R.drawable.b),
-                            new helperSubject1("Course 3", "xyz", R.drawable.c)
+                            new helperSubject1("Video 1", "xyz", R.raw.video2),
+                            new helperSubject1("Video 2", "xyz",  R.raw.video),
+                            new helperSubject1("Video 3", "xyz",  R.raw.video3),
+                            new helperSubject1("Video 4", "xyz",  R.raw.video2),
+                            new helperSubject1("Video 5", "xyz",  R.raw.video),
+                            new helperSubject1("Video 6", "xyz",  R.raw.video3),
+                            new helperSubject1("Video 7", "xyz",  R.raw.video)
 
                     };
 
@@ -257,13 +257,13 @@ public class bFragment extends Fragment {
                     recyclerViewCourse2.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
 
                     helperSubject1[] helperSubject3 = new helperSubject1[]{
-                            new helperSubject1("Course 1", "xyz", R.drawable.a),
-                            new helperSubject1("Course 2", "xyz", R.drawable.b),
-                            new helperSubject1("Course 3", "xyz", R.drawable.c),
-                            new helperSubject1("Course 4", "xyz", R.drawable.d),
-                            new helperSubject1("Course 1", "xyz", R.drawable.a),
-                            new helperSubject1("Course 2", "xyz", R.drawable.b),
-                            new helperSubject1("Course 3", "xyz", R.drawable.c)
+                            new helperSubject1("Video 1", "xyz",  R.raw.video2),
+                            new helperSubject1("Video 2", "xyz",  R.raw.video3),
+                            new helperSubject1("Video 3", "xyz",  R.raw.video),
+                            new helperSubject1("Video 4", "xyz",  R.raw.video3),
+                            new helperSubject1("Video 5", "xyz",  R.raw.video),
+                            new helperSubject1("Video 6", "xyz",  R.raw.video2),
+                            new helperSubject1("Video 7", "xyz",  R.raw.video)
 
                     };
 

@@ -237,10 +237,10 @@ public class aFragment extends Fragment {
         subject1.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
 
         helperSubject1[] helperSubject = new helperSubject1[]{
-                new helperSubject1("Course 1", "xyz", R.drawable.a),
-                new helperSubject1("Course 2", "xyz", R.drawable.b),
-                new helperSubject1("Course 3", "xyz", R.drawable.c),
-                new helperSubject1("Course 4", "xyz", R.drawable.d)
+                new helperSubject1("video 1", "xyz", R.raw.video),
+                new helperSubject1("video 2", "xyz",R.raw.video2),
+                new helperSubject1("video 3", "xyz", R.raw.video3),
+                new helperSubject1("video 4", "xyz", R.raw.video2)
 
         };
 
@@ -252,10 +252,10 @@ public class aFragment extends Fragment {
         subject2.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
 
         helperSubject1[] helperSubject2 = new helperSubject1[]{
-                new helperSubject1("Course a", "xyz", R.drawable.a),
-                new helperSubject1("Course b", "xyz", R.drawable.b),
-                new helperSubject1("Course c", "xyz", R.drawable.c),
-                new helperSubject1("Course d", "xyz", R.drawable.d)
+                new helperSubject1("video a", "xyz", R.raw.video2),
+                new helperSubject1("video b", "xyz", R.raw.video3),
+                new helperSubject1("video c", "xyz", R.raw.video2),
+                new helperSubject1("video d", "xyz", R.raw.video)
 
         };
 
@@ -266,10 +266,10 @@ public class aFragment extends Fragment {
         subject3.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
 
         helperSubject1[] helperSubject3 = new helperSubject1[]{
-                new helperSubject1("Course a", "xyz", R.drawable.a),
-                new helperSubject1("Course b", "xyz", R.drawable.b),
-                new helperSubject1("Course c", "xyz", R.drawable.c),
-                new helperSubject1("Course d", "xyz", R.drawable.d)
+                new helperSubject1("video a", "xyz", R.raw.video3),
+                new helperSubject1("video b", "xyz", R.raw.video),
+                new helperSubject1("video c", "xyz", R.raw.video2),
+                new helperSubject1("video d", "xyz", R.raw.video3)
 
         };
 
@@ -280,10 +280,10 @@ public class aFragment extends Fragment {
         subject4.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
 
         helperSubject1[] helperSubject4 = new helperSubject1[]{
-                new helperSubject1("Course a", "xyz", R.drawable.a),
-                new helperSubject1("Course b", "xyz", R.drawable.b),
-                new helperSubject1("Course c", "xyz", R.drawable.c),
-                new helperSubject1("Course d", "xyz", R.drawable.d)
+                new helperSubject1("video a", "xyz",R.raw.video),
+                new helperSubject1("video b", "xyz", R.raw.video2),
+                new helperSubject1("video c", "xyz",R.raw.video),
+                new helperSubject1("video d", "xyz", R.raw.video2)
 
         };
 

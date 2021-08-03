@@ -14,7 +14,23 @@
         android:layout_height="300dp"
         android:layout_marginTop="10dp"
         android:layout_gravity="center"
-        android:src="@drawable/facebook_avatar" />
+        android:src="@drawable/facebook_avatar"
+        android:visibility="gone"/>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <VideoView
+            android:layout_marginTop="100dp"
+            android:id="@+id/videoView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+
+    </FrameLayout>
+
+
 
     <TextView
         android:layout_marginTop="10dp"
@@ -28,7 +44,7 @@
         android:layout_height="wrap_content"
         android:text="Course Name"
         android:textColor="@color/black"
-        android:textSize="30dp"
+        android:textSize="20dp"
         android:layout_margin="10dp"/>
 
     <TextView
@@ -43,16 +59,10 @@
         android:layout_height="wrap_content"
         android:text="Author Name"
         android:textColor="@color/black"
-        android:textSize="30dp"
+        android:textSize="20dp"
         android:layout_marginStart="10dp"/>
 
-    <Button
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_gravity="center"
-        android:text=" Watch"
-        android:backgroundTint="#00BCD4"/>
+
 
 
 

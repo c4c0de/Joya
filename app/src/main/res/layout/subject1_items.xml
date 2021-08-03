@@ -5,6 +5,7 @@
     android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cvtap1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
@@ -21,7 +22,14 @@
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_margin="5dp"
-                android:src="@drawable/facebook_avatar"/>
+                android:src="@drawable/facebook_avatar"
+                android:visibility="gone"/>
+            <ImageView
+
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_margin="5dp"
+                android:src="@drawable/fragment_a"/>
 
             <TextView
                 android:id="@+id/tvSubject1Title"

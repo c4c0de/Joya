@@ -165,7 +165,7 @@ public class cFragment extends Fragment {
 
                             updateCourseUser1();
 
-                            startActivity(new Intent(getContext(), allVideos.class));
+                            startActivity(new Intent(getContext(), bottomDrawer.class));
                         }
                     });
 
