@@ -202,7 +202,7 @@ public class bFragment extends Fragment {
                     recyclerViewCourse1 = viewB.findViewById(R.id.rvCourse1Material);
                     recyclerViewCourse1.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
 
-                    helperSubject1[] helperSubject3= new helperSubject1[]{
+                    helperSubject1[] helperSubject3 = new helperSubject1[]{
                             new helperSubject1("Course 1", "xyz", R.drawable.a),
                             new helperSubject1("Course 2", "xyz", R.drawable.b),
                             new helperSubject1("Course 3", "xyz", R.drawable.c),
@@ -226,7 +226,7 @@ public class bFragment extends Fragment {
                     recyclerViewCourse2 = viewB.findViewById(R.id.rvCourse2Material);
                     recyclerViewCourse2.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
 
-                    helperSubject1[] helperSubject3= new helperSubject1[]{
+                    helperSubject1[] helperSubject3 = new helperSubject1[]{
                             new helperSubject1("Course 1", "xyz", R.drawable.a),
                             new helperSubject1("Course 2", "xyz", R.drawable.b),
                             new helperSubject1("Course 3", "xyz", R.drawable.c),

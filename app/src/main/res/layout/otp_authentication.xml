@@ -107,17 +107,23 @@
 
             <EditText
                 android:id="@+id/enterOTP"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:ems="10"
-                android:hint="enter OTP"
+                android:layout_gravity="center"
+                android:ems="6"
+                android:hint="Enter OTP"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:textColorHint="@color/black"
                 android:inputType="phone"
                 android:visibility="gone" />
 
             <Button
                 android:id="@+id/verifyOTP"
-                android:layout_width="match_parent"
+                android:layout_width="150dp"
+                android:layout_gravity="center"
+                android:backgroundTint="#00BCD4"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="verify"
@@ -125,7 +131,9 @@
 
             <Button
                 android:id="@+id/resendOTP"
-                android:layout_width="match_parent"
+                android:layout_width="150dp"
+                android:layout_gravity="center"
+                android:backgroundTint="#00BCD4"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="resend"

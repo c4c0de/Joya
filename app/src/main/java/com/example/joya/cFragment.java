@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 import androidx.fragment.app.Fragment;
 
@@ -20,6 +21,8 @@ import java.net.URL;
 public class cFragment extends Fragment {
 
     Button createClass, buttonClass1, buttonClass2, buttonClass3, buttonClass4, buttonClass5;
+
+    LinearLayout student, nonStudent;
 
 
     public cFragment() {

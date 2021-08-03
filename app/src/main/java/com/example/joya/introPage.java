@@ -2,7 +2,6 @@ package com.example.joya;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.ProgressBar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,7 +10,7 @@ import java.util.TimerTask;
 
 public class introPage extends AppCompatActivity {
     Timer timer;
-    ProgressBar progressBar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
