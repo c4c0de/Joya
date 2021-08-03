@@ -8,7 +8,17 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.annotations.NotNull;
 
 import org.jitsi.meet.sdk.JitsiMeet;
 import org.jitsi.meet.sdk.JitsiMeetActivity;
@@ -23,6 +33,11 @@ public class cFragment extends Fragment {
     Button createClass, buttonClass1, buttonClass2, buttonClass3, buttonClass4, buttonClass5;
 
     LinearLayout student, nonStudent;
+
+    String currentUser;
+    String userFromFireBase;
+    FirebaseUser UserName;
+    DatabaseReference referenceA;
 
 
     public cFragment() {
@@ -41,6 +56,41 @@ public class cFragment extends Fragment {
         buttonClass3 = view.findViewById(R.id.btClass3);
         buttonClass4 = view.findViewById(R.id.btClass4);
         buttonClass5 = view.findViewById(R.id.btClass5);
+
+        student = view.findViewById(R.id.llCourseStudent);
+        nonStudent = view.findViewById(R.id.llNonCourseStudent);
+
+
+        UserName = FirebaseAuth.getInstance().getCurrentUser();
+        userFromFireBase = UserName.getPhoneNumber();
+
+
+        referenceA = FirebaseDatabase.getInstance().getReference("Course1User");
+        referenceA.child(userFromFireBase).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull @NotNull Task<DataSnapshot> task) {
+
+                DataSnapshot dataSnapshot = task.getResult();
+                currentUser = String.valueOf(dataSnapshot.child("user").getValue());
+
+
+                if (userFromFireBase.equals(currentUser)) {
+
+                    student.setVisibility(View.VISIBLE);
+                    nonStudent.setVisibility(View.GONE);
+
+
+                } else {
+
+                    student.setVisibility(View.GONE);
+                    nonStudent.setVisibility(View.VISIBLE);
+
+                }
+
+
+            }
+        });
+
 
         URL serverURL;
 
