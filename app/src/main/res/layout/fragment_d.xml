@@ -2,11 +2,11 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-
-    android:background="#49BFEF"
     android:id="@+id/rlFragmentD"
+    android:layout_width="match_parent"
+
+    android:layout_height="match_parent"
+    android:background="#49BFEF"
     android:orientation="vertical"
 
     tools:context=".dFragment">
@@ -30,22 +30,21 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
                     android:padding="10dp"
                     android:text="Profile"
                     android:textColor="@color/black"
-                    android:textSize="30dp"
-                    android:layout_marginBottom="10dp"/>
+                    android:textSize="30dp" />
 
                 <TextView
                     android:id="@+id/tvEditBasicInformation"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="70dp"
+                    android:layout_marginBottom="10dp"
                     android:text="Edit"
-                    android:textSize="30dp"
                     android:textColor="#D02EEC"
-                    android:layout_marginBottom="10dp"/>
-
+                    android:textSize="30dp" />
 
 
                 <TextView
@@ -54,11 +53,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="15dp"
+                    android:layout_marginBottom="10dp"
                     android:gravity="start"
                     android:text="Sign Out"
                     android:textColor="#FB0000"
-                    android:textSize="25dp"
-                    android:layout_marginBottom="10dp"/>
+                    android:textSize="25dp" />
 
             </LinearLayout>
 
@@ -67,30 +66,35 @@
                 android:id="@+id/cvAdmin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone">
+                android:layout_gravity="center"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:elevation="5dp"
+                app:cardCornerRadius="10dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:padding="10dp"
-                        android:textSize="25dp"
                         android:text="ADMIN SPACE"
-                        android:textStyle="bold"
                         android:textColor="@color/black"
-                        android:gravity="center"/>
+                        android:textSize="25dp"
+                        android:textStyle="bold" />
 
                     <EditText
                         android:id="@+id/etTutorName"
                         android:layout_width="300dp"
-                        android:layout_gravity="center"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:layout_marginStart="10dp"
-                        android:hint=" Name of the Tutor"
                         android:gravity="center"
+                        android:hint=" Name of the Tutor"
                         android:textColor="#000000"
                         android:textSize="20dp" />
 
@@ -99,8 +103,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
-                        android:hint=" mobile number of the tutor to register"
                         android:gravity="center"
+                        android:hint=" mobile number of the tutor to register"
                         android:textColor="#000000"
                         android:textSize="20dp" />
 
@@ -108,9 +112,8 @@
                         android:id="@+id/btTutor"
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
-                        android:text="REGISTER"
-                        android:layout_gravity="center"/>
-
+                        android:layout_gravity="center"
+                        android:text="REGISTER" />
 
 
                 </LinearLayout>
@@ -125,10 +128,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="10dp"
-                    android:textSize="25dp"
                     android:text="Basic Information"
-                    android:textStyle="bold"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/black"
+                    android:textSize="25dp"
+                    android:textStyle="bold" />
 
 
             </LinearLayout>
@@ -141,8 +144,8 @@
                 android:layout_gravity="center"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                card_view:cardCornerRadius="10dp"
-                android:elevation="5dp">
+                android:elevation="5dp"
+                card_view:cardCornerRadius="10dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -162,13 +165,12 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:layout_marginTop="10dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textSize="20dp"
-                            android:textColor="@color/black"
+                            android:layout_marginTop="10dp"
                             android:text="Name:-"
-                            />
+                            android:textColor="@color/black"
+                            android:textSize="20dp" />
 
                         <TextView
                             android:id="@+id/tvName"
@@ -176,16 +178,16 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
                             android:hint="_______________"
-                            android:textColorHint="#00BCD4"
                             android:textColor="#00BCD4"
+                            android:textColorHint="#00BCD4"
                             android:textSize="20dp" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Mobile Number:-"
-                            android:textSize="20dp"
-                            android:textColor="@color/black"/>
+                            android:textColor="@color/black"
+                            android:textSize="20dp" />
 
                         <TextView
                             android:id="@+id/tvmobileNumber"
@@ -193,16 +195,16 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
                             android:hint="_______________"
-                            android:textColorHint="#00BCD4"
                             android:textColor="#00BCD4"
+                            android:textColorHint="#00BCD4"
                             android:textSize="20dp" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Email:-"
-                            android:textSize="20dp"
-                            android:textColor="@color/black"/>
+                            android:textColor="@color/black"
+                            android:textSize="20dp" />
 
                         <TextView
                             android:id="@+id/tvEmail"
@@ -210,16 +212,16 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
                             android:hint="_______________"
-                            android:textColorHint="#00BCD4"
                             android:textColor="#00BCD4"
+                            android:textColorHint="#00BCD4"
                             android:textSize="20dp" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Roll Number:-"
-                            android:textSize="20dp"
-                            android:textColor="@color/black"/>
+                            android:textColor="@color/black"
+                            android:textSize="20dp" />
 
                         <TextView
                             android:id="@+id/tvRollNumber"
@@ -227,8 +229,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
                             android:hint="_______________"
-                            android:textColorHint="#00BCD4"
                             android:textColor="#00BCD4"
+                            android:textColorHint="#00BCD4"
                             android:textSize="25dp" />
 
 
@@ -250,9 +252,9 @@
                     android:layout_height="wrap_content"
                     android:padding="10dp"
                     android:text="Personal Details"
+                    android:textColor="@color/black"
                     android:textSize="25dp"
-                    android:textStyle="bold"
-                    android:textColor="@color/black" />
+                    android:textStyle="bold" />
 
                 <!--            <TextView-->
                 <!--                android:id="@+id/tvEditPersonalDetails"-->
@@ -290,10 +292,10 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Date of Birth:-"
                             android:layout_marginStart="15dp"
-                            android:textSize="20dp"
-                            android:textColor="@color/black"/>
+                            android:text="Date of Birth:-"
+                            android:textColor="@color/black"
+                            android:textSize="20dp" />
 
                         <TextView
                             android:id="@+id/tvBateOfBirth"
@@ -301,18 +303,18 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
                             android:hint="_______________"
-                            android:textColorHint="#00BCD4"
                             android:textColor="#00BCD4"
+                            android:textColorHint="#00BCD4"
                             android:textSize="20dp" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Gender:-"
-                            android:textSize="20dp"
                             android:layout_marginStart="15dp"
+                            android:text="Gender:-"
+                            android:textColor="@color/black"
 
-                            android:textColor="@color/black"/>
+                            android:textSize="20dp" />
 
                         <TextView
                             android:id="@+id/tvGender"
@@ -327,10 +329,10 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Blood Group:-"
-                            android:textSize="20dp"
                             android:layout_marginStart="15dp"
-                            android:textColor="@color/black"/>
+                            android:text="Blood Group:-"
+                            android:textColor="@color/black"
+                            android:textSize="20dp" />
 
                         <TextView
                             android:id="@+id/tvBloodGroup"
@@ -338,19 +340,19 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
                             android:hint="_______________"
-                            android:textColorHint="#00BCD4"
                             android:textColor="#00BCD4"
+                            android:textColorHint="#00BCD4"
                             android:textSize="20dp" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Permanent Address:-"
-                            android:textSize="20dp"
                             android:layout_marginStart="15dp"
                             android:hint="_______________"
+                            android:text="Permanent Address:-"
+                            android:textColor="@color/black"
                             android:textColorHint="#00BCD4"
-                            android:textColor="@color/black"/>
+                            android:textSize="20dp" />
 
                         <TextView
                             android:id="@+id/tvPermanentAdress"
@@ -358,17 +360,17 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
                             android:hint="_______________"
-                            android:textColorHint="#00BCD4"
                             android:textColor="#00BCD4"
+                            android:textColorHint="#00BCD4"
                             android:textSize="20dp" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Pin Code:-"
-                            android:textSize="20dp"
                             android:layout_marginStart="15dp"
-                            android:textColor="@color/black"/>
+                            android:text="Pin Code:-"
+                            android:textColor="@color/black"
+                            android:textSize="20dp" />
 
                         <TextView
                             android:id="@+id/tvPinCode"
@@ -376,8 +378,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
                             android:hint="_______________"
-                            android:textColorHint="#00BCD4"
                             android:textColor="#00BCD4"
+                            android:textColorHint="#00BCD4"
                             android:textSize="20dp" />
 
 

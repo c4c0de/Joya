@@ -234,7 +234,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="Scheduled Classes :"
+                            android:text="Course 2 Scheduled Classes :"
                             android:textColor="@color/white"
                             android:textSize="15dp"
                             android:textStyle="bold"/>
@@ -312,12 +312,32 @@
 
             android:elevation="10dp"
             app:cardCornerRadius="10dp"
-            android:visibility="gone">
+            android:visibility="visible">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="TUTOR SPACE"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:textSize="25dp"
+                    android:layout_marginTop="10dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Select the course to update the schedule"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:textSize="15dp"
+                    android:layout_marginTop="10dp"/>
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
@@ -357,7 +377,8 @@
                     android:layout_height="50dp"
                     android:layout_margin="20dp"
                     android:elevation="10dp"
-                    app:cardCornerRadius="10dp">
+                    app:cardCornerRadius="10dp"
+                    android:visibility="gone">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -592,11 +613,11 @@
             android:id="@+id/cvtutor2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:elevation="10dp"
             app:cardCornerRadius="10dp"
+
             app:cardElevation="10dp"
-            android:visibility="gone">
+            android:visibility="visible">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -610,6 +631,7 @@
                     android:layout_marginBottom="10dp"
                     android:gravity="center"
                     android:text="Select course to add the study materials"
+                    android:textStyle="bold"
                     android:textColor="@color/black" />
 
                 <Spinner

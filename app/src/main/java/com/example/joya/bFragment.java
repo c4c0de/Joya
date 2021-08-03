@@ -479,8 +479,8 @@ public class bFragment extends Fragment {
                 } else {
 
 
-                    TVcourse1Date.setVisibility(View.VISIBLE);
-                    course1Date.setVisibility(View.VISIBLE);
+                    TVcourse1Date.setVisibility(View.GONE);
+                    course1Date.setVisibility(View.GONE);
 
                     course1dateOfPeriod.setVisibility(View.GONE);
                     course1MorningClass.setVisibility(View.GONE);
@@ -493,7 +493,7 @@ public class bFragment extends Fragment {
                     updateCourse1Schedule.setVisibility(View.GONE);
                     updateCourse2Schedule.setVisibility(View.GONE);
 
-                    TVcourse1Date.setText("Select the course from drop down list");
+
 
 
                 }
