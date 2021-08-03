@@ -25,8 +25,10 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.database.annotations.NotNull;
 
 import org.jitsi.meet.sdk.JitsiMeet;
@@ -149,32 +151,60 @@ public class bFragment extends Fragment {
         userFromFireBase = UserName.getPhoneNumber();
 
 
-        referenceA = FirebaseDatabase.getInstance().getReference("tutorUser");
-        referenceA.child(userFromFireBase).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        referenceA = FirebaseDatabase.getInstance().getReference("tutorUser").child(userFromFireBase).child("user");
+        referenceA.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onComplete(@NonNull @NotNull Task<DataSnapshot> task) {
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String currentUser = dataSnapshot.getValue(String.class);
 
-                DataSnapshot dataSnapshot = task.getResult();
-                currentUser = String.valueOf(dataSnapshot.child("user").getValue());
-
-
-                if (userFromFireBase.equals(currentUser)) {
-
-                    tutor1.setVisibility(View.VISIBLE);
-                    tutor2.setVisibility(View.VISIBLE);
-
-
+                if (currentUser != null) {
+                    if (currentUser.equals(userFromFireBase)) {
+                        tutor1.setVisibility(View.VISIBLE);
+                        tutor2.setVisibility(View.VISIBLE);
+                    }
                 } else {
-
                     tutor1.setVisibility(View.GONE);
                     tutor2.setVisibility(View.GONE);
-
-
                 }
 
 
             }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+                Toast.makeText(getContext(), "Database connection Lost", Toast.LENGTH_SHORT).show();
+
+            }
         });
+
+
+//        referenceA = FirebaseDatabase.getInstance().getReference("tutorUser");
+//        referenceA.child(userFromFireBase).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+//            @Override
+//            public void onComplete(@NonNull @NotNull Task<DataSnapshot> task) {
+//
+//                DataSnapshot dataSnapshot = task.getResult();
+//                currentUser = String.valueOf(dataSnapshot.child("user").getValue());
+//
+//
+//                if (userFromFireBase.equals(currentUser)) {
+//
+//                    tutor1.setVisibility(View.VISIBLE);
+//                    tutor2.setVisibility(View.VISIBLE);
+//
+//
+//                } else {
+//
+//                    tutor1.setVisibility(View.GONE);
+//                    tutor2.setVisibility(View.GONE);
+//
+//
+//                }
+//
+//
+//            }
+//        });
 
 
         recyclerViewCourse1.setLayoutManager(new LinearLayoutManager(getContext()));

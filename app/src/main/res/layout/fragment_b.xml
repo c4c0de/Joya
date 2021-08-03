@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F1F6F8"
+    android:background="#03B7FF"
     android:orientation="vertical"
     tools:context=".bFragment">
 
@@ -16,7 +16,8 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="10dp">
+            app:cardCornerRadius="20dp"
+            android:layout_margin="20dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -27,7 +28,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_margin="20dp"
-                    android:elevation="10dp"
+                    android:backgroundTint="#6FC7EA"
+                    android:elevation="20dp"
                     app:cardCornerRadius="10dp">
 
                     <LinearLayout
@@ -41,14 +43,18 @@
                             android:layout_gravity="center"
                             android:layout_marginStart="70dp"
                             android:text="COURSE"
-                            android:textColor="@color/black" />
+                            android:textColor="@color/white"
+                            android:textStyle="bold"
+                            android:textSize="18dp"/>
 
                         <Spinner
                             android:id="@+id/spinnerCourse"
                             android:layout_width="wrap_content"
                             android:layout_height="20dp"
                             android:layout_gravity="center"
-                            android:layout_marginStart="50dp" />
+                            android:layout_marginStart="10dp"
+                            android:popupBackground="@color/white"
+                            />
 
 
                     </LinearLayout>
@@ -60,6 +66,7 @@
                     android:layout_height="50dp"
                     android:layout_margin="20dp"
                     android:elevation="10dp"
+                    android:backgroundTint="#6FC7EA"
                     app:cardCornerRadius="10dp">
 
                     <LinearLayout
@@ -73,8 +80,10 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginStart="20dp"
-                            android:text="select Your Course from Drop Down"
-                            android:textColor="#9C2727"
+                            android:text="select Your Course from Drop Down to Go to Class"
+                            android:textColor="@color/white"
+                            android:textStyle="bold"
+                            android:textSize="17dp"
                             android:visibility="visible" />
 
                         <TextView
@@ -82,9 +91,11 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_marginStart="20dp"
+                            android:layout_marginStart="10dp"
                             android:text="On Going Class"
-                            android:textColor="@color/black"
+                            android:textSize="17dp"
+                            android:textStyle="bold"
+                            android:textColor="@color/white"
                             android:visibility="gone" />
 
                         <Button
@@ -104,7 +115,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="20dp"
-
                             android:backgroundTint="@color/white"
                             android:text=">>"
                             android:textColor="#00BCD4"
@@ -123,7 +133,9 @@
                     android:layout_margin="20dp"
                     android:elevation="10dp"
                     android:visibility="gone"
-                    app:cardCornerRadius="10dp">
+                    android:backgroundTint="#6FC7EA"
+                    app:cardCornerRadius="20dp"
+                    >
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -136,7 +148,9 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:text="Course 1 Scheduled Classes :"
-                            android:textColor="@color/black" />
+                            android:textColor="@color/white"
+                            android:textSize="15dp"
+                            android:textStyle="bold"/>
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -148,7 +162,10 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
-                                android:text="Morning Class :" />
+                                android:text="Morning Class :"
+                                android:textColor="@color/white"
+                                android:textSize="15dp"
+                                android:textStyle="bold"/>
 
                             <TextView
                                 android:id="@+id/tvCourse1MorningClassName"
@@ -156,7 +173,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
                                 android:text=""
-                                android:textColor="@color/black" />
+                                android:textColor="@color/white"
+                                android:textSize="15dp"/>
 
 
                         </LinearLayout>
@@ -171,7 +189,10 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
-                                android:text="Evening Class :" />
+                                android:text="Evening Class :"
+                                android:textColor="@color/white"
+                                android:textSize="15dp"
+                                android:textStyle="bold"/>
 
                             <TextView
                                 android:id="@+id/tvCourse1EveningClassName"
@@ -180,7 +201,8 @@
                                 android:layout_marginStart="10dp"
                                 android:layout_marginBottom="10dp"
                                 android:text=""
-                                android:textColor="@color/black" />
+                                android:textColor="@color/white"
+                                android:textSize="15dp"/>
 
 
                         </LinearLayout>
@@ -199,7 +221,8 @@
                     android:layout_margin="20dp"
                     android:elevation="10dp"
                     android:visibility="gone"
-                    app:cardCornerRadius="10dp">
+                    android:backgroundTint="#6FC7EA"
+                    app:cardCornerRadius="20dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -212,7 +235,9 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:text="Scheduled Classes :"
-                            android:textColor="@color/black" />
+                            android:textColor="@color/white"
+                            android:textSize="15dp"
+                            android:textStyle="bold"/>
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -224,7 +249,10 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
-                                android:text="Morning Class :" />
+                                android:text="Morning Class :"
+                                android:textColor="@color/white"
+                                android:textSize="15dp"
+                                android:textStyle="bold"/>
 
                             <TextView
                                 android:id="@+id/tvCourse2MorningClassName"
@@ -232,7 +260,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
                                 android:text=""
-                                android:textColor="@color/black" />
+                                android:textColor="@color/white"
+                                android:textSize="15dp"/>
 
 
                         </LinearLayout>
@@ -247,7 +276,10 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
-                                android:text="Evening Class :" />
+                                android:text="Evening Class :"
+                                android:textColor="@color/white"
+                                android:textSize="15dp"
+                                android:textStyle="bold"/>
 
                             <TextView
                                 android:id="@+id/tvCourse2EveningClassName"
@@ -256,7 +288,8 @@
                                 android:layout_marginStart="10dp"
                                 android:layout_marginBottom="10dp"
                                 android:text=""
-                                android:textColor="@color/black" />
+                                android:textColor="@color/white"
+                                android:textSize="15dp" />
 
 
                         </LinearLayout>
@@ -278,7 +311,8 @@
             android:layout_marginTop="10dp"
 
             android:elevation="10dp"
-            app:cardCornerRadius="10dp">
+            app:cardCornerRadius="10dp"
+            android:visibility="gone">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -561,7 +595,8 @@
             android:layout_marginTop="10dp"
             android:elevation="10dp"
             app:cardCornerRadius="10dp"
-            app:cardElevation="10dp">
+            app:cardElevation="10dp"
+            android:visibility="gone">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -611,7 +646,7 @@
             android:layout_width="match_parent"
             android:layout_height="3dp"
             android:layout_marginTop="10dp"
-            android:backgroundTint="#00BCD4"
+            android:backgroundTint="@color/black"
             android:elevation="10dp">
 
         </androidx.cardview.widget.CardView>
@@ -620,20 +655,28 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:elevation="10dp"
-            android:layout_marginTop="10dp">
+            app:cardCornerRadius="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="100dp"
+            >
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                >
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:gravity="center"
-                    android:text="Select the course"
-                    android:textColor="@color/black" />
+                    android:text="Select the course to view study materials"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:textSize="17dp"/>
 
                 <Spinner
                     android:id="@+id/spStudyMaterial"
@@ -646,16 +689,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="300dp"
                     android:layout_marginTop="10dp"
-                    android:visibility="visible"
-                    android:layout_marginBottom="100dp"/>
+                    android:visibility="gone" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvCourse2Material"
                     android:layout_width="match_parent"
                     android:layout_height="300dp"
                     android:layout_marginTop="10dp"
-                    android:visibility="visible"
-                    android:layout_marginBottom="100dp"/>
+                    android:visibility="gone" />
 
             </LinearLayout>
 

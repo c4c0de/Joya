@@ -19,7 +19,8 @@
         android:id="@+id/llNonCourseStudent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        >
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -84,11 +85,12 @@
                     android:layout_margin="10dp"
                     android:layout_weight="1"
                     android:backgroundTint="#00BCD4"
-                    android:drawablePadding="20dp"
                     android:paddingLeft="20dp"
                     android:paddingRight="20dp"
-                    android:text="Share"
-                    android:textColor="@android:color/white" />
+                    android:text="Join"
+                    android:textColor="@android:color/white"
+                    android:visibility="gone"/>
+
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -99,7 +101,8 @@
             android:id="@+id/llCourseStudent"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="gone">
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"

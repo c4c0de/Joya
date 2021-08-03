@@ -6,9 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -16,8 +19,10 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.database.annotations.NotNull;
 
 
@@ -41,6 +46,13 @@ public class dFragment extends Fragment {
 
     FirebaseDatabase rootnood;
     DatabaseReference reference;
+    DatabaseReference reference1;
+    DatabaseReference referenceA;
+
+    Button tutorRegister;
+    EditText tutorNumber, tutorName;
+
+    CardView adminSpace;
 
     public dFragment() {
         // Required empty public constructor
@@ -68,7 +80,54 @@ public class dFragment extends Fragment {
         permanentAdress = v.findViewById(R.id.tvPermanentAdress);
         pinCode = v.findViewById(R.id.tvPinCode);
 
+        tutorRegister = v.findViewById(R.id.btTutor);
+        tutorName = v.findViewById(R.id.etTutorName);
+        tutorNumber = v.findViewById(R.id.etTutorNumber);
 
+        adminSpace = v.findViewById(R.id.cvAdmin);
+
+
+        UserName = FirebaseAuth.getInstance().getCurrentUser();
+        userFromFireBase = UserName.getPhoneNumber();
+
+        referenceA = FirebaseDatabase.getInstance().getReference("adminUser").child(userFromFireBase).child("user");
+        referenceA.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String currentUser = dataSnapshot.getValue(String.class);
+
+                if (currentUser != null) {
+                    if (currentUser.equals(userFromFireBase)) {
+
+                        adminSpace.setVisibility(View.VISIBLE);
+
+                    }
+                } else {
+
+                    adminSpace.setVisibility(View.GONE);
+                }
+
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+                Toast.makeText(getContext(), "Database connection Lost", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+
+        tutorRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updateTutorInfo();
+                tutorName.setText("");
+                tutorNumber.setText("");
+
+            }
+        });
 
 
         displayUserNumber();
@@ -153,65 +212,24 @@ public class dFragment extends Fragment {
 
     }
 
-//    @Override
-//    public void onCreate(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//
-//        bb = savedInstanceState.getString("mm");
-//      name.setText(bb);
-//
-//    }
+    private void updateTutorInfo() {
 
-//    private void dataFromDataBAseThroughInfoUpdater() {
-//
-//        Bundle data = getArguments();
-//
-//        if (data != null) {
-//            strName = data.getString("myData");
-////            strMobileNumber = data.getString("mobileNumber");
-//            strRollNumber = data.getString("rollNumber");
-//            strDOB = data.getString("dob");
-//            strGender = data.getString("gender");
-//            strBloodGroup = data.getString("bloodGroup");
-//            strPermanentAdress = data.getString("permanentAdress");
-//            strPinCode = data.getString("pinCode");
-//
-//
-//        }
-//
-//
-//        name.setText(strName);
-////        phoneNumber.setText(strMobileNumber);
-//        email.setText(strEmail);
-//        rollNumber.setText(strRollNumber);
-//        DOB.setText(strDOB);
-//        gender.setText(strGender);
-//        bloodGroup.setText(strBloodGroup);
-//        permanentAdress.setText(strPermanentAdress);
-//        pinCode.setText(strPinCode);
-//    }
 
-//    @Override
-//    public void onSaveInstanceState(@NonNull @NotNull Bundle outState) {
-//        super.onSaveInstanceState(outState);
-//        Bundle data = getArguments();
-//
-//        if (data != null) {
-//            aa = data.getString("myData");
-//
-//
-//        }
-//        aa = name.getText().toString();
-//        outState.putString("mm",aa);
-//
-//
-//    }
-//
-//    @Override
-//    public void onViewStateRestored(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
-//        super.onViewStateRestored(savedInstanceState);
-//
-//        String a = savedInstanceState.getString("mm");
-//        name.setText(a);
-//    }
+        reference1 = FirebaseDatabase.getInstance().getReference("tutorUser");
+
+
+        String Name = tutorName.getText().toString();
+        String Number = tutorNumber.getText().toString();
+
+
+        helperTutor helperClass = new helperTutor(Name, Number);
+
+        reference1.child(Number).setValue(helperClass);
+
+        Toast.makeText(getContext(), "UPDATED", Toast.LENGTH_SHORT).show();
+
+
+    }
+
+
 }

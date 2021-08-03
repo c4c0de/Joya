@@ -6,36 +6,35 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.annotations.NotNull;
+import com.google.firebase.database.ValueEventListener;
 
 
 public class aFragment extends Fragment {
 
-    RecyclerView courses;
+
     RecyclerView subject1;
     RecyclerView subject2;
+    RecyclerView subject3;
+    RecyclerView subject4;
 
-    TextView viewAll1, viewAll2;
+    TextView viewAll1, viewAll2, hiddenText1, viewAll3, viewAll4;
 
-    String currentUser;
+
     String userFromFireBase;
     FirebaseUser UserName;
     DatabaseReference reference;
-
-
 
 
     public aFragment() {
@@ -50,56 +49,54 @@ public class aFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_a, container, false);
 
 
-
-
-
         viewAll1 = view.findViewById(R.id.tvViewAll1);
         viewAll2 = view.findViewById(R.id.tvViewAll2);
+        viewAll3 = view.findViewById(R.id.tvViewAll3);
+        viewAll4 = view.findViewById(R.id.tvViewAll4);
+
 
         UserName = FirebaseAuth.getInstance().getCurrentUser();
         userFromFireBase = UserName.getPhoneNumber();
 
-
-
-
-        reference = FirebaseDatabase.getInstance().getReference("Course1User");
-
-        reference = FirebaseDatabase.getInstance().getReference("Course1User");
-        reference.child(userFromFireBase).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        reference = FirebaseDatabase.getInstance().getReference("Course1User").child(userFromFireBase).child("user");
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onComplete(@NonNull @NotNull Task<DataSnapshot> task) {
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String currentUser = dataSnapshot.getValue(String.class);
 
-                DataSnapshot dataSnapshot = task.getResult();
-                currentUser = String.valueOf(dataSnapshot.child("user").getValue());
+                if (currentUser != null) {
+                    if (currentUser.equals(userFromFireBase)) {
+                        viewAll1.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                startActivity(new Intent(getContext(), allVideos.class));
+                            }
+                        });
+
+                        viewAll2.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                startActivity(new Intent(getContext(), allVideos.class));
+                            }
+                        });
+
+                        viewAll3.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                startActivity(new Intent(getContext(), allVideos.class));
+                            }
+                        });
+
+                        viewAll4.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                startActivity(new Intent(getContext(), allVideos.class));
+                            }
+                        });
 
 
-
-                if ( userFromFireBase.equals(currentUser)) {
-
-                    viewAll1.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            startActivity(new Intent(getContext(), allVideos.class));
-
-
-
-
-                        }
-                    });
-
-                    viewAll2.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            startActivity(new Intent(getContext(), allVideos.class));
-
-
-
-
-                        }
-                    });
-
-                }else {
-
+                    }
+                } else {
                     viewAll1.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -113,27 +110,127 @@ public class aFragment extends Fragment {
                             startActivity(new Intent(getContext(), CourseEnroll.class));
                         }
                     });
+
+                    viewAll3.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            startActivity(new Intent(getContext(), CourseEnroll.class));
+                        }
+                    });
+
+                    viewAll4.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            startActivity(new Intent(getContext(), CourseEnroll.class));
+                        }
+                    });
+
 
                 }
 
 
             }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+                Toast.makeText(getContext(), "Database connection Lost", Toast.LENGTH_SHORT).show();
+
+            }
         });
 
 
-        courses = view.findViewById(R.id.rvCourses);
-        courses.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+//        reference = FirebaseDatabase.getInstance().getReference("Course1User");
+//
+//        reference.child(userFromFireBase).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+//            @Override
+//            public void onComplete(@NonNull @NotNull Task<DataSnapshot> task) {
+//
+//                DataSnapshot dataSnapshot = task.getResult();
+//                 currentUser = String.valueOf(dataSnapshot.child("user").getValue());
+//
+//                viewAll3.setText(currentUser);
+//
+//
+//
+//            }
+//        }).addOnFailureListener(new OnFailureListener() {
+//            @Override
+//            public void onFailure(@NonNull @org.jetbrains.annotations.NotNull Exception e) {
+//                Toast.makeText(getContext(), "Connection Lost", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//
+//
+//        viewAll1.setText(userFromFireBase);
 
-        helperCourses[] HelperCourses = new helperCourses[]{
-                new helperCourses("Course 1", "xyz", R.drawable.a),
-                new helperCourses("Course 2", "xyz", R.drawable.b),
-                new helperCourses("Course 3", "xyz", R.drawable.c),
-                new helperCourses("Course 4", "xyz", R.drawable.d)
+//        String hello = hiddenText1.getText().toString();
 
-        };
+//        if (hello!=null) {
+//            viewAll2.setText(hello);
+//        }
 
-        courseAdapter myCourseAdapter = new courseAdapter(HelperCourses, getContext());
-        courses.setAdapter(myCourseAdapter);
+
+//        reference = FirebaseDatabase.getInstance().getReference("Course1User");
+//        reference.child(userFromFireBase).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+//            @Override
+//            public void onComplete(@NonNull @NotNull Task<DataSnapshot> task) {
+//
+//                DataSnapshot dataSnapshot = task.getResult();
+//                currentUser = String.valueOf(dataSnapshot.child("user").getValue());
+//
+//
+//                if (userFromFireBase.equals(currentUser)) {
+//
+//                    viewAll1.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            startActivity(new Intent(getContext(), allVideos.class));
+//
+//
+//                        }
+//                    });
+//
+//                    viewAll2.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            startActivity(new Intent(getContext(), allVideos.class));
+//
+//
+//                        }
+//                    });
+//
+//                } else {
+//
+//                    Toast.makeText(getContext(), "Join A course for a better experience", Toast.LENGTH_SHORT).show();
+//
+//                    viewAll1.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            startActivity(new Intent(getContext(), CourseEnroll.class));
+//                        }
+//                    });
+//
+//                    viewAll2.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            startActivity(new Intent(getContext(), CourseEnroll.class));
+//                        }
+//                    });
+//
+//                }
+//
+//
+//            }
+//        }).addOnFailureListener(new OnFailureListener() {
+//            @Override
+//            public void onFailure(@NonNull @org.jetbrains.annotations.NotNull Exception e) {
+//
+//
+//                Toast.makeText(getContext(), e.getMessage().toString(), Toast.LENGTH_SHORT).show();
+//
+//            }
+//        });
 
 
         subject1 = view.findViewById(R.id.rvSubject1);
@@ -164,6 +261,34 @@ public class aFragment extends Fragment {
 
         subject1Adapter mySubject1Adapter2 = new subject1Adapter(helperSubject2, getContext());
         subject2.setAdapter(mySubject1Adapter2);
+
+        subject3 = view.findViewById(R.id.rvSubject3);
+        subject3.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+
+        helperSubject1[] helperSubject3 = new helperSubject1[]{
+                new helperSubject1("Course a", "xyz", R.drawable.a),
+                new helperSubject1("Course b", "xyz", R.drawable.b),
+                new helperSubject1("Course c", "xyz", R.drawable.c),
+                new helperSubject1("Course d", "xyz", R.drawable.d)
+
+        };
+
+        subject1Adapter mySubject1Adapter3 = new subject1Adapter(helperSubject3, getContext());
+        subject3.setAdapter(mySubject1Adapter3);
+
+        subject4 = view.findViewById(R.id.rvSubject4);
+        subject4.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+
+        helperSubject1[] helperSubject4 = new helperSubject1[]{
+                new helperSubject1("Course a", "xyz", R.drawable.a),
+                new helperSubject1("Course b", "xyz", R.drawable.b),
+                new helperSubject1("Course c", "xyz", R.drawable.c),
+                new helperSubject1("Course d", "xyz", R.drawable.d)
+
+        };
+
+        subject1Adapter mySubject1Adapter4 = new subject1Adapter(helperSubject4, getContext());
+        subject4.setAdapter(mySubject1Adapter4);
 
 
         return view;

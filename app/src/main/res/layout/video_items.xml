@@ -8,48 +8,51 @@
         android:id="@+id/cvtap"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:backgroundTint="#6FC7EA"
         android:elevation="5dp"
-        app:cardCornerRadius="10dp">
+        app:cardCornerRadius="20dp"
+        android:layout_margin="5dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/ivSubject1Image"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_margin="5dp"
                 android:src="@drawable/facebook_avatar"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tvSubject1Title"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="hello"
-                android:textColor="@color/black"
-                android:gravity="center"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"/>
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tvSubject1Author"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="hello"
-                android:textColor="@color/black"
-                android:gravity="center"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"/>
+                <TextView
+                    android:id="@+id/tvSubject1Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="hello1"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"/>
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/tvSubject1Author"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="hello2"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"/>
+
+            </LinearLayout>
 
         </LinearLayout>
 
